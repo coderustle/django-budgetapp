@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name=”robots” content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="description" content="Django Budget App"/>
+  <meta name="author" content="Madalin Popa">
+
+
+  <link rel="canonical" href="https://localhost/"/>
+  <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
+
+  <!-- Load CSS -->
+  {% block stylesheet %}
+  <link type="text/css" href="{% static '/css/main.css' %}" rel="stylesheet">
+  {% endblock stylesheet %}
+
+  <title>{% block title %}Django App{% endblock %}</title>
+
+  {% block header_script %}
+
+  {% endblock header_script %}
+</head>
+
+<body class="bg-light-color">
+
+<main id="main">
+  <!-- Header -->
+  {% block header %}{% endblock header %}
+
+  <!-- Main content-->
+  {% block content %}{% endblock content %}
+
+  <!-- Footer -->
+  {% block footer %}
+
+  {% endblock footer %}
+</main>
+
+<!-- Javascript-->
+{% block footer_script %}
+
+<script defer src="{% static '/js/index.bundle.js.gz' %}"></script>
+
+{% endblock footer_script %}
+
+</body>
+
+</html>

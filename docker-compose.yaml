@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:14
+    container_name: postgresdb-budgetapp
+    hostname: postgresdb
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - POSTGRES_DB=${DB_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+
+  node:
+    image: node:16-alpine
+    container_name: node-budgetapp
+    hostname: node
+    restart: always
+    environment:
+      - NODE_ENV=development
+    working_dir: /app
+#    command: npm run dev
+    volumes:
+      - ./:/app
+
+  webapp:
+    container_name: budgetapp
+    image: budgetapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+      - node
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./:/app

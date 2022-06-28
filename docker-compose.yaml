@@ -1,10 +1,10 @@
 version: '3.9'
 
 services:
-  db:
+  db-budgetapp:
     image: postgres:14
     container_name: postgresdb-budgetapp
-    hostname: postgresdb
+    hostname: postgresdb-budgetapp
     restart: always
     env_file:
       - ./.env
@@ -15,9 +15,9 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - /var/lib/postgresql/data:/var/lib/postgresql/data
+      - /var/lib/postgresql/budgetapp:/var/lib/postgresql/data
 
-  node:
+  node-budgetapp:
     image: node:16-alpine
     container_name: node-budgetapp
     hostname: node
@@ -29,15 +29,15 @@ services:
     volumes:
       - ./:/app
 
-  webapp:
+  webapp-budgetapp:
     container_name: budgetapp
     image: budgetapp
     build:
       context: .
       dockerfile: Dockerfile
     depends_on:
-      - db
-      - node
+      - db-budgetapp
+      - node-budgetapp
     ports:
       - '8000:8000'
     volumes:

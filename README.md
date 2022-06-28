@@ -1,14 +1,14 @@
 ## Budget App
 
-A simple django web app used for budgeting your personal finance. 
+This is a django web app for personal finance budgeting. I created mostly this web app for personal use.
 
 ### Technology stack
 - Django
 - Tailwind
 - Alpine.js
 
-## Environment variables
-To run the web app locally, you need to create `.env` file in the project root
+### Environment variables
+To run the web app locally, you need to create an `.env` file in the project root
 with the following environment variables:
 
 ```bash

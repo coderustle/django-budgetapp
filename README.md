@@ -4,7 +4,7 @@ This is a django web app for personal finance budgeting. I created mostly this w
 
 ### Technology stack
 - Django
-- Tailwind
+- Tailwindcss
 - Alpine.js
 
 ### Environment variables

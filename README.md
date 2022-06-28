@@ -1,6 +1,6 @@
 ## Budget App
 
-This is a django web app for personal finance budgeting. I created mostly this web app for personal use.
+This is a django web app for personal finance budgeting. I created this web app mostly for personal use.
 
 ### Technology stack
 - Django
@@ -26,4 +26,3 @@ DJANGO_SETTINGS_MODULE=budgetapp.settings.development
 Start the web app using docker compose
 
 `docker compose up`
-

@@ -1,6 +1,9 @@
 """
 Django settings for budgetapp project.
 """
+
+# pylint: disable=wildcard-import unused-wildcard-import
+
 from .base import *
 
 # GENERAL

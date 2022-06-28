@@ -3,7 +3,7 @@
 # Testing
 # -----------------------------------------------------------------------
 coverage==6.4.1                 # https://pypi.org/project/coverage/
-Faker==12.1.0                   # https://pypi.org/project/Faker/
+Faker==13.14.0                   # https://pypi.org/project/Faker/
 tblib==1.7.0                    # https://pypi.org/project/tblib/
 nox==2022.1.7                   # https://pypi.org/project/nox/
 

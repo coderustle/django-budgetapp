@@ -2,6 +2,14 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+from pathlib import Path
+
+import dotenv
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+ENV_FILE = Path(__file__).resolve().parent / ".env"
+
+dotenv.load_dotenv(ENV_FILE)
 
 
 def main():

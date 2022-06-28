@@ -4,32 +4,34 @@
 # -----------------------------------------------------------------------
 coverage[toml]==6.4.1             # https://pypi.org/project/coverage/
 django-coverage-plugin==2.0.3   # https://pypi.org/project/django-coverage-plugin/
-Faker==12.1.0                   # https://pypi.org/project/Faker/
-selenium==4.1.0                 # https://pypi.org/project/selenium/
-webdriver-manager==3.5.2        # https://pypi.org/project/webdriver-manager/
+Faker==13.14.0                   # https://pypi.org/project/Faker/
+selenium==4.3.0                 # https://pypi.org/project/selenium/
+webdriver-manager==3.7.1        # https://pypi.org/project/webdriver-manager/
 tblib==1.7.0                    # https://pypi.org/project/tblib/
 nox==2022.1.7                   # https://pypi.org/project/nox/
 
 # Formatting
 # -----------------------------------------------------------------------
 isort==5.10.1                   # https://pypi.org/project/isort/
-black==22.3.0                   # https://pypi.org/project/black/
+black==22.6.0                   # https://pypi.org/project/black/
 
 # Code quality
 # -----------------------------------------------------------------------
-pylint==2.12.2                  # https://pypi.org/project/pylint/
-pylint-django==2.5.0            # https://pypi.org/project/pylint-django/
-mypy==0.931                     # https://pypi.org/project/mypy/
+pylint==2.14.3                  # https://pypi.org/project/pylint/
+pylint-django==2.5.3            # https://pypi.org/project/pylint-django/
+mypy==0.961                     # https://pypi.org/project/mypy/
 
 # Stubs
 # -----------------------------------------------------------------------
-django-stubs==1.9.0
-djangorestframework-stubs==1.4.0
+django-stubs==1.12.0            # https://pypi.org/project/django-stubs/
 types-selenium==3.141.9         # https://pypi.org/project/types-selenium/
-types-stripe==2.59.9            # https://pypi.org/project/types-stripe/
 
 # Utils
 # -----------------------------------------------------------------------
-ipython==8.0.1                  # https://pypi.org/project/ipython/
-django-debug-toolbar==3.2.4     # https://pypi.org/project/django-debug-toolbar/
+ipython==8.4.0                  # https://pypi.org/project/ipython/
+django-debug-toolbar==3.5.0     # https://pypi.org/project/django-debug-toolbar/
 pre-commit==2.19.0              # https://pypi.org/project/pre-commit/
+
+# Database
+# -----------------------------------------------------------------------
+psycopg2-binary==2.9.3   # https://pypi.org/project/psycopg2-binary/

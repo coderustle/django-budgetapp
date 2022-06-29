@@ -27,6 +27,7 @@ template_extensions = 'html, txt, tex, email'
 [tool.pylint.'MESSAGES CONTROL']
 disable=['fixme', 'too-few-public-methods', 'too-many-arguments', 'too-many-function-args']
 good-names=['pk', 'k']
+ignore='migrations'
 
 [tool.pylint.MASTER]
 load-plugins = ['pylint_django']

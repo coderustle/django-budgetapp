@@ -33,7 +33,7 @@ SITE_ID = 1
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,6 +41,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 ]
+
+LOCAL_APPS = [
+    "budgetapp.applications.users.apps.UsersConfig",
+]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -76,26 +82,17 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#wsgi-application
 WSGI_APPLICATION = "budgetapp.wsgi.application"
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
-
 # MIGRATIONS
 # -----------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/4.0/ref/settings/#migration-modules
-# MIGRATION_MODULES = {
-#     "users": "mihaelamocanu.contrib.users.migrations",
-#     "sites": "mihaelamocanu.contrib.sites.migrations",
-#     "blog": "mihaelamocanu.contrib.blog.migrations",
-#     "store": "mihaelamocanu.contrib.store.migrations",
-#     "core": "mihaelamocanu.contrib.core.migrations",
-# }
+MIGRATION_MODULES = {
+    "users": "budgetapp.contrib.users.migrations",
+}
+
+# SET CUSTOM USER MODEL
+# -----------------------------------------------------------------------------
+# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-AUTH_USER_MODEL
+AUTH_USER_MODEL = "users.User"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators

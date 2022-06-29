@@ -6,6 +6,7 @@ This is a django web app for personal finance budgeting. I created this web app 
 - Django
 - Tailwindcss
 - Alpine.js
+- Htmx
 
 ### Environment variables
 To run the web app locally, you need to create an `.env` file in the project root

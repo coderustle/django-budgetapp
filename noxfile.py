@@ -5,6 +5,7 @@ import nox
 from nox.sessions import Session
 
 SOURCE_CODE = "./budgetapp"
+TEST_UNIT_ARGS = ["-v", "0", "--force-color", "--keepdb", "--failfast"]
 
 # nox options
 nox.options.sessions = ["format", "lint"]
@@ -66,3 +67,24 @@ def test_functional(session: Session):
         "test",
         "tests.functional",
     )
+
+
+#
+# COVERAGE TESTS TASKS
+# ----------------------------------------------------
+@nox.session(name="coverage")
+def coverage(session):
+    """This task runs a coverage report for unit tests"""
+    session.run(
+        "docker",
+        "compose",
+        "run",
+        "webapp-budgetapp",
+        "coverage",
+        "run",
+        "manage.py",
+        "test",
+        "tests.unit",
+        *TEST_UNIT_ARGS,
+    )
+    session.run("coverage", "report", "-m")

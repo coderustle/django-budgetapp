@@ -16,7 +16,7 @@
 
   <!-- Load CSS -->
   {% block stylesheet %}
-  <link type="text/css" href="{% static '/css/main.css' %}" rel="stylesheet">
+    <link type="text/css" href="{% static '/css/main.css' %}" rel="stylesheet">
   {% endblock stylesheet %}
 
   <title>{% block title %}Django App{% endblock %}</title>
@@ -44,7 +44,15 @@
 <!-- Javascript-->
 {% block footer_script %}
 
-<script defer src="{% static '/js/index.bundle.js.gz' %}"></script>
+  <script defer src="{% static '/javascript/alpine.bundle.js.gz' %}"></script>
+  <script defer src="{% static '/javascript/htmx.bundle.js.gz' %}"></script>
+  <script defer src="{% static '/javascript/runtime.bundle.js.gz' %}"></script>
+  <script defer src="{% static '/javascript/index.bundle.js.gz' %}"></script>
+  <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+          event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      });
+  </script>
 
 {% endblock footer_script %}
 

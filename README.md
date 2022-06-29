@@ -23,6 +23,8 @@ SECRET_KEY=djangosecret
 DJANGO_SETTINGS_MODULE=budgetapp.settings.development
 
 ```
-Start the web app using docker compose
 
-`docker compose up`
+### Run web app locally
+
+1. Install node packages: `npm install`
+2. Start the web app using docker compose: `docker compose up`

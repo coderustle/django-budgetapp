@@ -94,6 +94,12 @@ MIGRATION_MODULES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-AUTH_USER_MODEL
 AUTH_USER_MODEL = "users.User"
 
+# https://docs.djangoproject.com/en/4.0/ref/settings/#login-redirect-url
+LOGIN_REDIRECT_URL = "users/"
+
+# https://docs.djangoproject.com/en/4.0/ref/settings/#logout-redirect-url
+LOGOUT_REDIRECT_URL = "users/login/"
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

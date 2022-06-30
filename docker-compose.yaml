@@ -25,7 +25,7 @@ services:
     environment:
       - NODE_ENV=development
     working_dir: /app
-#    command: npm run dev
+    command: npm run build:dev
     volumes:
       - ./:/app
 

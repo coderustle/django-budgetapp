@@ -37,6 +37,15 @@ def lint_code(session: Session):
 
 
 #
+# RUN UNIT TESTS IN LOCAL
+# ----------------------------------------------------
+@nox.session(name="test-unit-local")
+def test_unit_local(session: Session):
+    """Run all the unit tests locally"""
+    session.run("python", "manage.py", "test", "tests.unit")
+
+
+#
 # RUN UNIT TESTS IN DOCKER
 # ----------------------------------------------------
 @nox.session(name="test-unit")
@@ -47,10 +56,9 @@ def test_unit(session: Session):
         "compose",
         "run",
         "webapp-budgetapp",
-        "python",
-        "manage.py",
-        "test",
-        "tests.unit",
+        "nox",
+        "-s",
+        "test-unit-local",
         external=True,
     )
 

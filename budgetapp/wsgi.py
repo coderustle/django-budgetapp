@@ -18,6 +18,6 @@ ENV_FILE = Path(__file__).resolve().parent.parent / ".env"
 
 dotenv.load_dotenv(ENV_FILE)
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "budgetapp.settings.development")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "budgetapp.settings.dev")
 
 application = get_wsgi_application()

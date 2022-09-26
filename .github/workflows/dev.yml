@@ -11,7 +11,7 @@ jobs:
     environment:
       name: 'Development'
     env:
-      DJANGO_SETTINGS_MODULE: budgetapp.settings.development
+      DJANGO_SETTINGS_MODULE: budgetapp.settings.dev
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DEV_DB_NAME: ${{ secrets.DEV_DB_NAME }}
       DEV_DB_USER: ${{ secrets.DEV_DB_USER }}

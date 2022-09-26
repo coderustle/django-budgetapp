@@ -1,0 +1,48 @@
+name: Development Workflow
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment:
+      name: 'Development'
+    env:
+      DJANGO_SETTINGS_MODULE: budgetapp.settings.development
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DEV_DB_NAME: ${{ secrets.DEV_DB_NAME }}
+      DEV_DB_USER: ${{ secrets.DEV_DB_USER }}
+      DEV_DB_PASS: ${{ secrets.DEV_DB_PASS }}
+      DEV_DB_HOST: ${{ secrets.DEV_DB_HOST }}
+
+    services:
+      db:
+        image: postgres:14
+        env:
+          POSTGRES_DB: ${{ secrets.DEV_DB_NAME }}
+          POSTGRES_USER: ${{ secrets.DEV_DB_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DEV_DB_PASS }}
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.9'
+          cache: 'pip' # caching pip dependencies
+
+      - name: Install dependencies
+        run: pip install -r requirements/dev.txt
+
+      - name: Make migrations
+        run: |
+          python manage.py makemigrations
+          python manage.py migrate
+      - name: Run all unit tests
+        run: nox -s test-unit-local

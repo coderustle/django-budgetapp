@@ -1,18 +1,52 @@
-FROM python:3.9-slim
+# syntax=docker/dockerfile:1
+
+# ********************************************************
+# * Docker Django - Multi-stage, base image             *
+# ********************************************************
+FROM python:3.9-slim-bullseye AS base
 
 # Set the working directory
 WORKDIR /app
-
-# Copy all the project files
-COPY . .
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
+# Update the system
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends gcc
+
+# Create virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy the project files
+COPY requirements /var/tmp/requirements
+
 # Install python packages
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r ./requirements/local.txt
+    pip install --no-cache-dir -r /var/tmp/requirements/local.txt
+
+
+# ********************************************************
+# * Docker Django - Multi-stage, final image             *
+# ********************************************************
+FROM python:3.9-slim-bullseye
+
+# Create a new user
+RUN useradd --create-home budget
+
+# From now on, run all the commands with this user
+USER budget
+
+# Set the working directory
+WORKDIR /home/budget
+
+COPY --from=base /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy the project files
+COPY . .
 
 # Expose django port
 EXPOSE 8000

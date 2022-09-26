@@ -1,0 +1,9 @@
+-r base.txt
+
+# Database
+# -----------------------------------------------------------------------
+psycopg2-binary==2.9.3   # https://pypi.org/project/psycopg2-binary/
+
+# Server
+# -----------------------------------------------------------------------
+gunicorn==20.1.0         # https://pypi.org/project/gunicorn/

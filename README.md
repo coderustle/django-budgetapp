@@ -30,4 +30,5 @@ DJANGO_SETTINGS_MODULE=budgetapp.settings.dev
 ### Run web app locally
 
 1. Run bootstrap.sh script
-2. Start the web app using docker compose: `docker compose up`
+2. Update the `.env` file
+3. Start the web app using docker compose: `docker compose up`

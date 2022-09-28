@@ -1,5 +1,6 @@
 # syntax=docker/dockerfile:1
 
+ARG ENVIRONMENT=prod
 # ********************************************************
 # * Docker Django - Multi-stage, base image             *
 # ********************************************************

@@ -7,6 +7,7 @@ if [ ! -f ".env" ]; then
     
     # Create the .env file
     touch .env
+
     echo 'ENVIRONMENT="local"' >>.env
     echo " " >>.env
     echo "# Django variables"  >>.env

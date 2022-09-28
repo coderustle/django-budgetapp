@@ -8,3 +8,4 @@ django-widget-tweaks==1.4.12    # https://pypi.org/project/django-widget-tweaks/
 # -----------------------------------------------------------------------
 python-dotenv==0.21.0           # https://pypi.org/project/python-dotenv/
 whitenoise==6.2.0               # https://pypi.org/project/whitenoise/
+

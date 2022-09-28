@@ -5,6 +5,8 @@
 # ********************************************************
 FROM python:3.9-slim-bullseye AS base
 
+ARG ENVIRONMENT
+
 # Set the working directory
 WORKDIR /app
 
@@ -25,7 +27,7 @@ COPY requirements /var/tmp/requirements
 
 # Install python packages
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r /var/tmp/requirements/local.txt
+    pip install --no-cache-dir -r /var/tmp/requirements/${ENVIRONMENT}.txt
 
 
 # ********************************************************

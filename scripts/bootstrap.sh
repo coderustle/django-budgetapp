@@ -7,7 +7,8 @@ if [ ! -f ".env" ]; then
     
     # Create the .env file
     touch .env
-    
+    echo 'ENVIRONMENT="local"' >>.env
+    echo " " >>.env
     echo "# Django variables"  >>.env
     echo "SECRET_KEY=\"$(cat /dev/urandom | tr -dc '[:alpha:]' | fold -w ${1:-50} | head -n 1)\"" >>.env
     echo 'DJANGO_SETTINGS_MODULE="budgetapp.settings.dev"' >>.env

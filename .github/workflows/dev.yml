@@ -44,6 +44,8 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: false
+          build-args: |
+            ENVIRONMENT=local
           tags: madalintech/budgetapp:latest
 
   test:

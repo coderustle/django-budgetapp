@@ -14,7 +14,7 @@ dotenv.load_dotenv(ENV_FILE)
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "budgetapp.settings.development")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "budgetapp.settings.dev")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

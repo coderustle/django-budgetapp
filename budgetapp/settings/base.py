@@ -157,3 +157,7 @@ MEDIA_ROOT = BASE_DIR / "budgetapp/media/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Whitenoise configuration
+# http://whitenoise.evans.io/en/stable/django.html
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

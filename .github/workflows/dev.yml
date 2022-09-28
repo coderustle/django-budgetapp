@@ -18,6 +18,7 @@ jobs:
           node-version: 16
           cache: 'yarn'
       - run: yarn install --frozen-lockfile
+      - run: yarn run build:prod
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2

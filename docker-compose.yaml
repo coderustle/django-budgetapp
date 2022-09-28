@@ -35,6 +35,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - ENVIRONMENT=local
     depends_on:
       - db-budgetapp
       - node-budgetapp

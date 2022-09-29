@@ -50,13 +50,6 @@ RUN --mount=type=cache,target=/var/cache/apt-final \
 # Copy the sshd config file
 COPY ./scripts/sshd_config /etc/ssh/
 
-# Copy the ssh_init file
-COPY ./scripts/ssh_setup.sh /tmp
-
-# Copy and run the ssh_init file
-RUN chmod +x /tmp/ssh_setup.sh \
-    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
-
 # Create a new user
 RUN useradd --create-home budget
 

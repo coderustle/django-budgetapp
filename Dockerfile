@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1
 
 ARG ENVIRONMENT=prod
+
 # ********************************************************
-# * Docker Django - Multi-stage, base image             *
+# * Docker Django - BASE IMAGE                           *
 # ********************************************************
 FROM python:3.9-slim-bullseye AS base
 
@@ -29,7 +30,6 @@ COPY requirements /var/tmp/requirements
 # Install python packages
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r /var/tmp/requirements/${ENVIRONMENT}.txt
-
 
 # ********************************************************
 # * Docker Django - Multi-stage, final image             *

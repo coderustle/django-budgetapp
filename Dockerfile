@@ -17,7 +17,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Update the system
-RUN apt-get update && \
+RUN --mount=type=cache,target=/var/cache/apt-base \
+    apt-get update && \
     apt-get install -y --no-install-recommends gcc
 
 # Create virtual environment
@@ -39,7 +40,8 @@ FROM python:3.9-slim-bullseye
 # Enable SSH in Azure App Service Custom Container
 ENV SSH_PASSWD "root:Docker!"
 
-RUN apt-get update \
+RUN --mount=type=cache,target=/var/cache/apt-final \
+    apt-get update \
     && apt-get install -y --no-install-recommends dialog \
     && apt-get update \
     && apt-get install -y --no-install-recommends openssh-server \

@@ -17,7 +17,8 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Update the system
-RUN apt-get update && \
+RUN --mount=type=cache,target=/var/cache/apt-base \
+    apt-get update && \
     apt-get install -y --no-install-recommends gcc
 
 # Create virtual environment
@@ -36,6 +37,26 @@ RUN pip install --upgrade pip && \
 # ********************************************************
 FROM python:3.9-slim-bullseye
 
+# Enable SSH in Azure App Service Custom Container
+ENV SSH_PASSWD "root:Docker!"
+
+RUN --mount=type=cache,target=/var/cache/apt-final \
+    apt-get update \
+    && apt-get install -y --no-install-recommends dialog \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends openssh-server \
+    && echo "$SSH_PASSWD" | chpasswd
+
+# Copy the sshd config file
+COPY ./scripts/sshd_config /etc/ssh/
+
+# Copy the ssh_init file
+COPY ./scripts/ssh_setup.sh /tmp
+
+# Copy and run the ssh_init file
+RUN chmod +x /tmp/ssh_setup.sh \
+    && (sleep 1;/tmp/ssh_setup.sh 2>&1 > /dev/null)
+
 # Create a new user
 RUN useradd --create-home budget
 
@@ -52,7 +73,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 COPY . .
 
 # Expose django port
-EXPOSE 8000
+EXPOSE 8000 2222
 
 # Entrypoint
 ENTRYPOINT [ "scripts/init.sh" ]

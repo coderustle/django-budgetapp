@@ -51,3 +51,5 @@ jobs:
           build-args: |
             ENVIRONMENT=prod
           tags: madalintech/budgetapp:latest
+          cache-from: type=registry,ref=madalintech/budgetapp:latest
+          cache-to: type=inline

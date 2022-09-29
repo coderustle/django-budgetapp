@@ -27,7 +27,7 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v3
         with:
-          push: true
+          push: false
           build-args: |
             ENVIRONMENT=local
           tags: madalintech/budgetapp:dev

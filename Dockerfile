@@ -54,3 +54,5 @@ COPY . .
 # Expose django port
 EXPOSE 8000
 
+# Entrypoint
+ENTRYPOINT [ "scripts/init.sh" ]

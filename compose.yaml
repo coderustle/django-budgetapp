@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   db-budgetapp:
     image: postgres:14
@@ -40,7 +38,13 @@ services:
     depends_on:
       - db-budgetapp
       - node-budgetapp
+    entrypoint:
+      - python
+      - manage.py
+      - runserver
+      - 0.0.0.0:8000
     ports:
       - '8000:8000'
     volumes:
       - ./:/home/budget
+    profiles: ["webapp"]

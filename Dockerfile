@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1
 
 ARG ENVIRONMENT=prod
+
 # ********************************************************
-# * Docker Django - Multi-stage, base image             *
+# * Docker Django - BASE IMAGE                           *
 # ********************************************************
 FROM python:3.9-slim-bullseye AS base
 
@@ -30,7 +31,6 @@ COPY requirements /var/tmp/requirements
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r /var/tmp/requirements/${ENVIRONMENT}.txt
 
-
 # ********************************************************
 # * Docker Django - Multi-stage, final image             *
 # ********************************************************
@@ -54,6 +54,5 @@ COPY . .
 # Expose django port
 EXPOSE 8000
 
-# Run Django application
-# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Entrypoint
 ENTRYPOINT [ "scripts/init.sh" ]

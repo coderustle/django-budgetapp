@@ -14,11 +14,6 @@ eval $(printenv | sed -n "s/^\([^=]\+\)=\(.*\)$/export \1=\2/p" | sed 's/"/\\\"/
 service ssh start
 
 # =========================================
-# Collect static files
-# =========================================
-python manage.py collectstatic --no-input
-
-# =========================================
 # Start gunicorn process
 # =========================================
 gunicorn --bind=0.0.0.0 --timeout 600 --workers=4 --chdir /opt/budgetapp budgetapp.wsgi --access-logfile '-' --error-logfile '-'

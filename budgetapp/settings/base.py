@@ -12,7 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 # pylint: disable=wildcard-import unused-wildcard-import
 
 import os
+import mimetypes
 from pathlib import Path
+
+mimetypes.add_type("text/javascript", ".gz", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -162,3 +165,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Whitenoise configuration
 # http://whitenoise.evans.io/en/stable/django.html
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+

@@ -9,7 +9,7 @@ from .base import *
 # GENERAL
 # -----------------------------------------------------------------------------
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "https://personalbudget.azurewebsites.net",

@@ -132,6 +132,22 @@ dmypy.json
 .pyre/
 
 # Ignore build files
-budgetapp/static/css/**
-budgetapp/static/javascript/**
 !/.coverage
+noxfile.py
+tests
+compose.yaml
+pyproject.toml
+tailwind.config.js
+yarn.lock
+webpack
+.devcontainer
+.git
+.github
+.gitignore
+.pre-commit-config.yaml
+LICENSE
+README.md
+.dockerignore
+postcss.config.js
+package.json
+yarn.lock

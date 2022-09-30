@@ -52,6 +52,8 @@ services:
   webapp-prod:
     container_name: budgetapp-prod
     image: budgetapp-prod
+    env_file:
+      - ./.env
     environment:
       - DJANGO_SETTINGS_MODULE=budgetapp.settings.prod
     build:
@@ -63,6 +65,4 @@ services:
       - db-budgetapp
     ports:
       - '8000:8000'
-    volumes:
-      - .:/opt/budgetapp
     profiles: ["prod"]

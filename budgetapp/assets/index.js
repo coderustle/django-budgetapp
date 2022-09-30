@@ -1,4 +1,21 @@
+/**
+ * Libraries.js
+ */
+import Alpine from 'alpinejs';
 
-import './css/main.css'
+/**
+ * Style
+ */
+import './css/main.css';
 
-console.log("Hello World!")
+/**
+ * Global objects
+ */
+window.Alpine = Alpine;
+window.htmx = require('htmx.org');
+
+/**
+ * Alpine setup
+ */
+// Alpine.data('StoreCheckout', StoreCheckout);
+Alpine.start();

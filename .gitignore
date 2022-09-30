@@ -134,6 +134,6 @@ dmypy.json
 
 # Ignore build files
 budgetapp/static/css/**
-budgetapp/static/javascript/**
+budgetapp/static/js/**
 !/.coverage
 staticfiles

@@ -18,7 +18,7 @@ ALLOWED_HOSTS = ["*"]
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
-CSRF_TRUSTED_ORIGINS = ["https://*.ro"]
+CSRF_TRUSTED_ORIGINS = ["*"]
 
 # DATABASES
 # -----------------------------------------------------------------------------

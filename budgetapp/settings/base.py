@@ -144,7 +144,7 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "budgetapp/static"]
 
 # MEDIA
@@ -160,4 +160,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Whitenoise configuration
 # http://whitenoise.evans.io/en/stable/django.html
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"

@@ -27,9 +27,9 @@ services:
     volumes:
       - ./:/app
 
-  webapp-budgetapp:
-    container_name: budgetapp
-    image: budgetapp
+  webapp-dev:
+    container_name: budgetapp-dev
+    image: budgetapp-dev
     build:
       context: .
       dockerfile: Dockerfile
@@ -46,5 +46,21 @@ services:
     ports:
       - '8000:8000'
     volumes:
-      - ./:/home/budget
-    profiles: ["webapp"]
+      - .:/opt/budgetapp
+    profiles: ["dev"]
+
+  webapp-prod:
+    container_name: budgetapp-prod
+    image: budgetapp-prod
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - ENVIRONMENT=prod
+    depends_on:
+      - db-budgetapp
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/opt/budgetapp
+    profiles: ["prod"]

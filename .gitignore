@@ -136,3 +136,4 @@ dmypy.json
 budgetapp/static/css/**
 budgetapp/static/javascript/**
 !/.coverage
+staticfiles

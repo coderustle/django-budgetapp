@@ -26,6 +26,7 @@ services:
     command: npm run build:dev
     volumes:
       - ./:/app
+    profiles: ["dev"]
 
   webapp-dev:
     container_name: budgetapp-dev

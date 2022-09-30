@@ -15,6 +15,7 @@ ALLOWED_HOSTS = [
     "https://personalbudget.azurewebsites.net",
     "www.personalbudget.azurewebsites.net",
     "localhost",
+    "personalbudget.azurewebsites.net",
 ]
 
 # SECURITY

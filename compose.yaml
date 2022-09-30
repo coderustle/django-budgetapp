@@ -52,6 +52,8 @@ services:
   webapp-prod:
     container_name: budgetapp-prod
     image: budgetapp-prod
+    environment:
+      - DJANGO_SETTINGS_MODULE=budgetapp.settings.prod
     build:
       context: .
       dockerfile: Dockerfile

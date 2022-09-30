@@ -12,10 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 # pylint: disable=wildcard-import unused-wildcard-import
 
 import os
-import mimetypes
 from pathlib import Path
-
-mimetypes.add_type("text/javascript", ".gz", True)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent

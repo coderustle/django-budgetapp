@@ -9,13 +9,12 @@ from .base import *
 # GENERAL
 # -----------------------------------------------------------------------------
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
-    "https://personalbudget.azurewebsites.net",
-    "www.personalbudget.azurewebsites.net",
-    "localhost",
     "personalbudget.azurewebsites.net",
+    "budget.madalintech.com",
+    "localhost",
 ]
 
 # SECURITY

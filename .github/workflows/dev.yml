@@ -27,6 +27,7 @@ jobs:
       - name: Build
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: false
           build-args: |
             ENVIRONMENT=local

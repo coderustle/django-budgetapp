@@ -47,6 +47,7 @@ jobs:
       - name: Build and Push to registry
         uses: docker/build-push-action@v3
         with:
+          context: .
           push: true
           build-args: |
             ENVIRONMENT=prod

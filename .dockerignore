@@ -134,6 +134,7 @@ dmypy.json
 # Ignore build files
 budgetapp/static/css/**
 budgetapp/static/js/**
+budgetapp/assets
 
 # Ignore project files
 !/.coverage
@@ -155,3 +156,4 @@ README.md
 postcss.config.js
 package.json
 yarn.lock
+Dockerfile

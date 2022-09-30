@@ -54,7 +54,7 @@ COPY ./scripts/sshd_config /etc/ssh/
 RUN useradd --create-home budget
 
 # From now on, run all the commands with this user
-USER budget
+# USER budget
 
 # Set the working directory
 WORKDIR /home/budget

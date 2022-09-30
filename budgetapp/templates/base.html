@@ -53,4 +53,55 @@
 
   </body>
 
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8"/>
+    <meta lang="en" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name=”robots” content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="description" content="Personal Budget Application"/>
+    <meta name="author" content="Madalin Popa" />
+    <link rel="canonical" href="https://budgetapp.madalintech.com/"/>
+
+    <!-- Load CSS -->
+    {% block stylesheet %}
+      <link type="text/css" href="{% static '/css/main.css' %}" rel="stylesheet" />
+    {% endblock stylesheet %}
+
+    <title>{% block title %}Budget Application{% endblock title %}</title>
+
+    {% block header_script %}{% endblock header_script %}
+  </head>
+
+  <body class="bg-light-color">
+
+  <main id="main">
+    <!-- Header -->
+    {% block header %}{% endblock header %}
+
+    <!-- Main content-->
+    {% block content %}{% endblock content %}
+
+    <!-- Footer -->
+    {% block footer %}{% endblock footer %}
+  </main>
+
+  <!-- Javascript-->
+  {% block footer_script %}
+
+    <script defer src="{% static '/js/alpine.bundle.js' %}"></script>
+    <script defer src="{% static '/js/htmx.bundle.js' %}"></script>
+    <script defer src="{% static '/js/runtime.bundle.js' %}"></script>
+    <script defer src="{% static '/js/index.bundle.js' %}"></script>
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+        });
+    </script>
+
+  {% endblock footer_script %}
+
+  </body>
+  
 </html>

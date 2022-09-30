@@ -21,4 +21,4 @@ python manage.py collectstatic --no-input
 # =========================================
 # Start gunicorn process
 # =========================================
-exec gunicorn --bind=0.0.0.0 --timeout 600 budgetapp.wsgi
+gunicorn --bind=0.0.0.0 --timeout 600 --workers=4 --chdir /opt/budgetapp budgetapp.wsgi --access-logfile '-' --error-logfile '-'

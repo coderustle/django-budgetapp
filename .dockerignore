@@ -132,6 +132,10 @@ dmypy.json
 .pyre/
 
 # Ignore build files
+budgetapp/static/css/**
+budgetapp/static/js/**
+
+# Ignore project files
 !/.coverage
 noxfile.py
 tests

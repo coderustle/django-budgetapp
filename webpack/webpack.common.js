@@ -31,7 +31,7 @@ module.exports = {
      */
     index: {
       import: path.resolve(__dirname, '../budgetapp/assets/index.js'),
-      dependOn: [ 'htmx', 'alpine'], // ['htmx', 'vue']
+      dependOn: ['htmx', 'alpine'], // ['htmx', 'vue']
     },
   },
   /**
@@ -44,7 +44,7 @@ module.exports = {
     /**
      * Thi is the path where the bundle files will be placed
      */
-    path: path.resolve(__dirname, '../budgetapp/static/javascript/'),
+    path: path.resolve(__dirname, '../budgetapp/static/js/'),
     /**
      * This is the public path where the server will look for static files
      * Something like https://localhost:8000/static/js/index.bundle.js

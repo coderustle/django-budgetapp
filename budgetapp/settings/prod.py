@@ -9,16 +9,20 @@ from .base import *
 # GENERAL
 # -----------------------------------------------------------------------------
 
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    "https://personalbudget.azurewebsites.net",
+    "www.personalbudget.azurewebsites.net",
+    "localhost",
+]
 
 # SECURITY
 # -----------------------------------------------------------------------------
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 SECURE_BROWSER_XSS_FILTER = True
-CSRF_TRUSTED_ORIGINS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["https://personalbudget.azurewebsites.net"]
 
 # DATABASES
 # -----------------------------------------------------------------------------

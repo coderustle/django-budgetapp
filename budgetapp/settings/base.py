@@ -164,4 +164,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Whitenoise configuration
 # http://whitenoise.evans.io/en/stable/django.html
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"

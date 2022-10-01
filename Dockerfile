@@ -38,6 +38,7 @@ RUN pip install --upgrade pip && \
 FROM python:3.9-slim-bullseye
 
 # Enable SSH in Azure App Service Custom Container
+# The passowrd is standard for Azure and needs to be like this
 ENV SSH_PASSWD "root:Docker!"
 
 RUN --mount=type=cache,target=/var/cache/apt-final \

@@ -134,26 +134,23 @@ dmypy.json
 # Ignore build files
 budgetapp/static/css/**
 budgetapp/static/js/**
-budgetapp/assets
 
-# Ignore project files
-!/.coverage
-noxfile.py
-tests
-compose.yaml
-pyproject.toml
-tailwind.config.js
-yarn.lock
-webpack
-.devcontainer
-.git
-.github
-.gitignore
-.pre-commit-config.yaml
+# Project files that I don't want in the final build
 LICENSE
 README.md
-.dockerignore
-postcss.config.js
-package.json
-yarn.lock
+noxfile.py
 Dockerfile
+.gitignore
+*.config.js
+package.json
+compose.yaml
+.dockerignore
+pyproject.toml
+yarm.lock
+.pre-commit-config.yaml
+
+# Project directories that I don't want in the final build
+.git
+.github
+.devcontainer
+webpack

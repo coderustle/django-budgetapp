@@ -38,6 +38,7 @@ RUN pip install --upgrade pip && \
 FROM python:3.9-slim-bullseye
 
 # Enable SSH in Azure App Service Custom Container
+# The passowrd is standard for Azure and needs to be like this
 ENV SSH_PASSWD "root:Docker!"
 
 RUN --mount=type=cache,target=/var/cache/apt-final \
@@ -49,12 +50,6 @@ RUN --mount=type=cache,target=/var/cache/apt-final \
 
 # Copy the sshd config file
 COPY ./scripts/sshd_config /etc/ssh/
-
-# # Create a new user
-# RUN useradd --create-home budget
-
-# From now on, run all the commands with this user
-# USER budget
 
 # Set the working directory
 WORKDIR /opt/budgetapp

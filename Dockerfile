@@ -50,12 +50,6 @@ RUN --mount=type=cache,target=/var/cache/apt-final \
 # Copy the sshd config file
 COPY ./scripts/sshd_config /etc/ssh/
 
-# # Create a new user
-# RUN useradd --create-home budget
-
-# From now on, run all the commands with this user
-# USER budget
-
 # Set the working directory
 WORKDIR /opt/budgetapp
 

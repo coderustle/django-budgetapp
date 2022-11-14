@@ -1,6 +1,6 @@
 ## Budget App
 
-This is a django web app for personal finance budgeting. I created this web app mostly for personal use.
+This is a django web app for personal finance budgeting.
 
 ### Technology stack
 

@@ -82,7 +82,7 @@ DB_PORT                     # postgres port
 ### Contributing
 
 1. Open an issue and describe the changes that you want to do.
-2. Checkout `dev` branch with latest updates
+2. Fork the repository
 3. Create a a new branch to work on changes that you want to add.
 4. Push the new branch to GitHub, open a pull request and mention the issue from step 1. Enjoy!
 

@@ -6,7 +6,7 @@ ARG BUILD_ENV=prod
 # ********************************************************
 # * Docker Django - BASE IMAGE                           *
 # ********************************************************
-FROM python:3.9-slim-bullseye AS base
+FROM python:3.10-slim-bullseye AS base
 
 ARG DOCKER_BUILD_ENV
 
@@ -36,7 +36,7 @@ RUN pip install --upgrade pip && \
 # ********************************************************
 # * Docker Django - TEST                                 *
 # ********************************************************
-FROM python:3.9-slim-bullseye AS development
+FROM python:3.10-slim-bullseye AS development
 
 # Build parameters
 ARG DJANGO_SETTINGS_MODULE
@@ -69,7 +69,7 @@ EXPOSE 8000
 # ********************************************************
 # * Docker Django - PRODUCTION                           *
 # ********************************************************
-FROM python:3.9-slim-bullseye
+FROM python:3.10-slim-bullseye
 
 # Enable SSH in Azure App Service Custom Container
 # The passowrd is standard for Azure and needs to be like this

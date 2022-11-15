@@ -53,7 +53,7 @@ module.exports = {
      */
     filename: '[name]-[hash].js',
     /**
-     * Everytime webpack runs will clear the '../mihaelamocanu/static/js/ folder
+     * Everytime webpack runs will clear the '../budgetapp/static/js/ folder
      */
     clean: true,
   },

@@ -1,13 +1,14 @@
 # syntax=docker/dockerfile:1
 
-ARG ENVIRONMENT=prod
+# Used to specify the requirements.txt
+ARG BUILD_ENV=prod
 
 # ********************************************************
 # * Docker Django - BASE IMAGE                           *
 # ********************************************************
 FROM python:3.9-slim-bullseye AS base
 
-ARG ENVIRONMENT
+ARG DOCKER_BUILD_ENV
 
 # Set the working directory
 WORKDIR /app
@@ -30,10 +31,43 @@ COPY requirements /var/tmp/requirements
 
 # Install python packages
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r /var/tmp/requirements/${ENVIRONMENT}.txt
+    pip install --no-cache-dir -r /var/tmp/requirements/${BUILD_ENV}.txt
 
 # ********************************************************
-# * Docker Django - Multi-stage, final image             *
+# * Docker Django - TEST                                 *
+# ********************************************************
+FROM python:3.9-slim-bullseye AS development
+
+# Build parameters
+ARG DJANGO_SETTINGS_MODULE
+ARG SECRET_KEY
+ARG DB_NAME
+ARG DB_HOST
+ARG DB_PASS
+ARG DB_USER
+
+ENV DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
+ENV SECRET_KEY=${SECRET_KEY}
+ENV DB_NAME=${DB_NAME}
+ENV DB_HOST=${DB_HOST}
+ENV DB_PASS=${DB_PASS}
+ENV DB_USER=${DB_USER}
+
+# Set the working directory
+WORKDIR /opt/project_name
+
+# Copy build from base
+COPY --from=base /opt/venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Copy the project files
+COPY . .
+
+# Expose Django port
+EXPOSE 8000
+
+# ********************************************************
+# * Docker Django - PRODUCTION                           *
 # ********************************************************
 FROM python:3.9-slim-bullseye
 
@@ -41,7 +75,7 @@ FROM python:3.9-slim-bullseye
 # The passowrd is standard for Azure and needs to be like this
 ENV SSH_PASSWD "root:Docker!"
 
-RUN --mount=type=cache,target=/var/cache/apt-final \
+RUN --mount=type=cache,target=/var/cache/apt-production \
     apt-get update \
     && apt-get install -y --no-install-recommends dialog \
     && apt-get update \
@@ -54,6 +88,7 @@ COPY ./scripts/sshd_config /etc/ssh/
 # Set the working directory
 WORKDIR /opt/budgetapp
 
+# Copy build from base
 COPY --from=base /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 

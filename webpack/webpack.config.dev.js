@@ -2,12 +2,11 @@
  * Webpack modules
  */
 const { merge } = require('webpack-merge');
-const webpack = require('webpack');
 
 /**
  * Common configuration
  */
-const common = require('./webpack.common');
+const common = require('./webpack.config.common');
 
 module.exports = merge(common, {
   /**

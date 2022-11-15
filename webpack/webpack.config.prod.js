@@ -1,7 +1,6 @@
 /**
  * Webpack modules
  */
-const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 
 /**
@@ -12,7 +11,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 /**
  * Common configuration
  */
-const common = require('./webpack.common');
+const common = require('./webpack.config.common');
 
 module.exports = merge(common, {
   /**

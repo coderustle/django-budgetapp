@@ -47,7 +47,7 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    # "whitenoise.runserver_nostatic",
+    "webpack_loader",
 ]
 
 LOCAL_APPS = [
@@ -166,3 +166,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # http://whitenoise.evans.io/en/stable/django.html
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
+# WEBPACK
+# -----------------------------------------------------------------------------
+# https://github.com/django-webpack/django-webpack-loader
+WEBPACK_LOADER = {
+    "DEFAULT": {
+        "CACHE": not DEBUG,
+        "STATS_FILE": os.path.join(BASE_DIR, "webpack/webpack-stats.json"),
+        "POLL_INTERVAL": 0.1,
+        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+    }
+}

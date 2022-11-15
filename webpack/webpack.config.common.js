@@ -8,6 +8,7 @@ const path = require('path');
  */
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
+const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
   /**
@@ -18,9 +19,6 @@ module.exports = {
    * vue.bundle.js: is the vue.js entrypoint
    */
   entry: {
-    /**
-     * Alpine.js entrypoint
-     */
     alpine: 'alpinejs',
     /**
      * HTMX load
@@ -38,28 +36,24 @@ module.exports = {
    * OUTPUT
    *
    * The output property tells webpack where to emit the bundles it creates
-   * and how to name these files. All the files are outputed to ../mihaelamocanu/static/js/
+   * and how to name these files. All the files are outputed to ../project_name/static/js/
    */
   output: {
     /**
      * Thi is the path where the bundle files will be placed
      */
-    path: path.resolve(__dirname, '../budgetapp/static/js/'),
+    path: path.resolve(__dirname, '../budgetapp/static/'),
     /**
      * This is the public path where the server will look for static files
      * Something like https://localhost:8000/static/js/index.bundle.js
      */
-    publicPath: '/static/',
+    publicPath: 'static/',
     /**
      * This is the file name that will result from the entries
      */
-    filename: '[name].bundle.js',
+    filename: '[name]-[hash].js',
     /**
-     * This settings is for assets, to specify where to be placed.
-     */
-    assetModuleFilename: '../../[hash][ext]',
-    /**
-     * Everytime webpack runs will clear the '../budgetapp/static/javascript/ folder
+     * Everytime webpack runs will clear the '../mihaelamocanu/static/js/ folder
      */
     clean: true,
   },
@@ -88,7 +82,6 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
-            plugins: ['@babel/plugin-transform-regenerator'],
           },
         },
       },
@@ -99,6 +92,17 @@ module.exports = {
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
+      },
+      /**
+       * Rule 2: understand and parse the image files
+       * Using webpac assets to load image files
+       */
+      {
+        test: /\.(png|svg|jpg|jpeg|gif|webp|ico)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: './images/[name][ext]',
+        },
       },
     ],
   },
@@ -113,11 +117,17 @@ module.exports = {
     /**
      * This plugin is used to extract the css in its own file
      */
-    new MiniCssExtractPlugin({ filename: '../css/main.css' }),
+    new MiniCssExtractPlugin({
+      filename: '[name]-[hash].css',
+    }),
     /**
      * This plugin is used to compress the .js modules
      */
     new CompressionPlugin({ test: /\.js(\?.*)?$/i }),
+    /**
+     * This plugin is used to generate a webpack bundle stats
+     */
+    new BundleTracker({ filename: './webpack/webpack-stats.json' })
   ],
   /**
    * OPTIMIZATION

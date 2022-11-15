@@ -4,31 +4,86 @@ This is a django web app for personal finance budgeting.
 
 ### Technology stack
 
-- Django
-- Tailwindcss
-- Alpine.js
 - Htmx
+- Django
+- Alpine.js
+- Tailwindcss
 
-### Environment variables
+### Run locally
 
-To run the web app locally, you need to create an `.env` file in the project root
-with the following environment variables:
+1. Run bootstrap.sh script: `./scripts/bootstrap.sh`
+2. Start Django: `python manage.py runserver`
+
+If you want to run the app in docker container run the following command:
 
 ```bash
-# database environments
-DB_NAME=budgetapp
-DB_USER=user
-DB_PASS=demo1234
-DB_HOST=db-budgetapp
 
-# webapp environments
-SECRET_KEY=djangosecret
-DJANGO_SETTINGS_MODULE=budgetapp.settings.dev
+docker compose --profile webapp build
+docker compose --profile webapp up
 
 ```
 
-### Run web app locally
+Make sure you update the `DB_HOST` and replace `localhost` with `db` service.
 
-1. Run bootstrap.sh script
-2. Update the `.env` file
-3. Start the web app using docker compose: `docker compose up`
+### Run tests
+
+Run unit tests
+`python manage.py test -v 0 --failfast tests.unit`
+
+Run functional tests
+`python manage.py test -v 0 --failfast tests.functional`
+
+### Webpack libaries and plugins
+
+```bash
+
+# Webpack
+webpack                        # Webpack
+webpack-cli                    # Webpack cli
+webpack-merge                  # Used to combine multiple webpack configuration
+webpack-bundle-tracker         # Used to track webpack bundle
+
+# Webpack plugins
+mini-css-extract-plugin        # Used to extract css into separate file
+compression-webpack-plugin     # Used to compress the js files
+
+# Webpack loaders
+css-loader                     # Used to load css
+postcss-loader                 # Used with tailwindcss to parse css
+babel-loader                   # Used to load js
+
+# Other libraries
+@babel/core                    # Javascript compiler
+@babel/preset-env              # Javascript compiler
+htmx.org                       # Htmx gives you access to AJAX, CSS Transitions, WebSockets and Server Sent Events
+alpinejs                       # Create Vue like components
+autoprefixer                   # PostCSS plugin to parse CSS and add vendor prefixes to CSS rules
+postcss                        # A tool for transforming CSS with JavaScript
+tailwindcss                    # A utility-first CSS framework for rapid UI development
+
+```
+
+### Environment variables explained
+
+```bash
+# Django
+DJANGO_SETTINGS_MODULE      # django settings module
+BUILD_ENV                   # requirements.txt file name to build in docker stage
+SECRET_KEY                  # django secret key
+
+# Database
+DB_NAME                     # postgres database name
+DB_USER                     # postgres datbase user
+DB_PASS                     # postgres database pass
+DB_HOST                     # postgres host
+DB_PORT                     # postgres port
+```
+
+### Contributing
+
+1. Open an issue and describe the changes that you want to do.
+2. Checkout `dev` branch with latest updates
+3. Create a a new branch to work on changes that you want to add.
+4. Push the new branch to GitHub, open a pull request and mention the issue from step 1. Enjoy!
+
+Be kind and polite with others, don't forget we are doing this for fun and because we like to code.

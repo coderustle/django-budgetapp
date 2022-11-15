@@ -4,8 +4,8 @@
   "description": "This is a django web app for managing personal finance",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack --watch --config ./webpack/webpack.dev.js",
-    "build:prod": "webpack --config ./webpack/webpack.prod.js"
+    "build:dev": "webpack --watch --config ./webpack/webpack.config.dev.js",
+    "build:prod": "webpack --config ./webpack/webpack.config.prod.js"
   },
   "repository": {
     "type": "git",

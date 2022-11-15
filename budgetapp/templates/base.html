@@ -1,56 +1,71 @@
 {% load static %}
+{% load render_bundle from webpack_loader %}
+{% load webpack_static from webpack_loader %}
 <!DOCTYPE html>
+<html lang="ro">
 
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8"/>
-    <meta lang="en" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name=”robots” content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="description" content="Personal Budget Application"/>
-    <meta name="author" content="Madalin Popa" />
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-    <link rel="canonical" href="https://budgetapp.madalintech.com/"/>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name=”robots” content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="description" content="Personal Budget Application"/>
+  <meta name="author" content="Madalin Popa">
 
-    <!-- Load CSS -->
-    {% block stylesheet %}
-      <link type="text/css" href="{% static '/css/main.css' %}" rel="stylesheet" />
-    {% endblock stylesheet %}
+  {% block meta_social %}
+    <meta property="og:locale" content="en_EN"/>
+    <meta property="og:type" content="Personal Budget Application"/>
+    <meta property="og:title" content="Personal Budget Application"/>
+    <meta property="og:description" content="Personal Budget Application"/>
+    <meta property="og:url" content="https://budgetapp.madalintech.com/"/>
+    <meta property="og:site_name" content="Personal Budget Application"/>
+    <meta property="article:publisher" content="https://www.facebook.com/"/>
+  {% endblock meta_social %}
 
-    <title>{% block title %}Budget Application{% endblock title %}</title>
+  <link rel="canonical" href="https://project.ro/"/>
+  <link rel="shortcut icon" type="image/png" href="{% webpack_static 'images/favicon.ico' %}"/>
+  <link rel="apple-touch-icon" type="image/png" href="{% webpack_static 'apple-touch-icon' %}">
 
-    {% block header_script %}{% endblock header_script %}
-  </head>
+  <!-- Load CSS -->
+  {% block stylesheet %}
+    {% render_bundle 'index' 'css' %}
+  {% endblock stylesheet %}
 
-  <body class="bg-light-color">
+  <title>{% block title %}Personal Budget Application{% endblock %}</title>
 
-    <main id="main">
-      <!-- Header -->
-      {% block header %}{% endblock header %}
+  {% block header_script %}
+  <!-- Load JS -->
 
-      <!-- Main content-->
-      {% block content %}{% endblock content %}
+  {% endblock header_script %}
 
-      <!-- Footer -->
-      {% block footer %}{% endblock footer %}
-    </main>
+</head>
 
-  <!-- Javascript-->
-  {% block footer_script %}
+<body class="bg-light-color">
 
-    <script defer src="{% static '/js/alpine.bundle.js' %}"></script>
-    <script defer src="{% static '/js/htmx.bundle.js' %}"></script>
-    <script defer src="{% static '/js/runtime.bundle.js' %}"></script>
-    <script defer src="{% static '/js/index.bundle.js' %}"></script>
-    <script>
-        document.body.addEventListener('htmx:configRequest', (event) => {
-            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-        });
-    </script>
+<main id="main">
+  <!-- Header -->
+  {% block header %}{% endblock header %}
 
-  {% endblock footer_script %}
+  <!-- Main content-->
+  {% block content %}{% endblock content %}
 
-  </body>
+  <!-- Footer -->
+  {% block footer %}{% endblock footer %}
+</main>
+
+<!-- Javascript-->
+{% block footer_script %}
+{% render_bundle 'alpine' 'js' %}
+{% render_bundle 'htmx' 'js' %}
+{% render_bundle 'index' 'js' %}
+  <script>
+      document.body.addEventListener('htmx:configRequest', (event) => {
+          event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      });
+  </script>
+
+{% endblock footer_script %}
+
+</body>
 
 </html>

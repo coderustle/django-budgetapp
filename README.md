@@ -4,31 +4,23 @@ This is a django web app for personal finance budgeting.
 
 ### Technology stack
 
-- Django
-- Tailwindcss
-- Alpine.js
 - Htmx
+- Django
+- Alpine.js
+- Tailwindcss
 
-### Environment variables
+### Run locally
 
-To run the web app locally, you need to create an `.env` file in the project root
-with the following environment variables:
+1. Run bootstrap.sh script: `./scripts/bootstrap.sh`
+2. Start Django: `python manage.py runserver`
+
+If you want to run the app in docker container run the following command:
 
 ```bash
-# database environments
-DB_NAME=budgetapp
-DB_USER=user
-DB_PASS=demo1234
-DB_HOST=db-budgetapp
 
-# webapp environments
-SECRET_KEY=djangosecret
-DJANGO_SETTINGS_MODULE=budgetapp.settings.dev
+docker compose --profile webapp build
+docker compose --profile webapp up
 
 ```
 
-### Run web app locally
-
-1. Run bootstrap.sh script
-2. Update the `.env` file
-3. Start the web app using docker compose: `docker compose up`
+Make sure you update the `DB_HOST` and replace `localhost` with `db` service.

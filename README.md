@@ -1,15 +1,17 @@
-## Budget App
+# Budget App
 
 This is a django web app for personal finance budgeting.
 
-### Technology stack
+[![Build](https://github.com/madalinpopa/budgetapp/actions/workflows/main.yml/badge.svg?branch=dev)](https://github.com/madalinpopa/budgetapp/actions/workflows/main.yml)
+
+## Technology stack
 
 - Htmx
 - Django
 - Alpine.js
 - Tailwindcss
 
-### Run locally
+## Run locally
 
 1. Run bootstrap.sh script: `./scripts/bootstrap.sh`
 2. Start Django: `python manage.py runserver`
@@ -25,7 +27,7 @@ docker compose --profile webapp up
 
 Make sure you update the `DB_HOST` and replace `localhost` with `db` service.
 
-### Run tests
+## Run tests
 
 Run unit tests
 `python manage.py test -v 0 --failfast tests.unit`
@@ -33,7 +35,7 @@ Run unit tests
 Run functional tests
 `python manage.py test -v 0 --failfast tests.functional`
 
-### Webpack libaries and plugins
+## Webpack libaries and plugins
 
 ```bash
 
@@ -63,7 +65,7 @@ tailwindcss                    # A utility-first CSS framework for rapid UI deve
 
 ```
 
-### Environment variables explained
+## Environment variables explained
 
 ```bash
 # Django
@@ -79,7 +81,7 @@ DB_HOST                     # postgres host
 DB_PORT                     # postgres port
 ```
 
-### Contributing
+## Contributing
 
 1. Open an issue and describe the changes that you want to do.
 2. Fork the repository

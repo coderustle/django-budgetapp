@@ -1,0 +1,73 @@
+name: Test template
+
+on:
+  workflow_call:
+    inputs:
+      environment:
+        default: 'Development'
+        required: false
+        type: string
+      settings:
+        default: 'budgetapp.settings.dev'
+        required: false
+        type: string
+      test_path:
+        default: 'tests.unit'
+        required: false
+        type: string
+    secrets:
+      SECRET_KEY:
+        required: true
+      DB_NAME:
+        required: true
+      DB_USER:
+        required: true
+      DB_PASS:
+        required: true
+      DB_HOST:
+        required: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    env:
+      DJANGO_SETTINGS_MODULE: ${{ inputs.settings }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DB_NAME: ${{ secrets.DB_NAME }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASS: ${{ secrets.DB_PASS }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+
+    services:
+      db:
+        image: postgres:14
+        env:
+          POSTGRES_DB: ${{ secrets.DB_NAME }}
+          POSTGRES_USER: ${{ secrets.DB_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DB_PASS }}
+        ports:
+          - 5432:5432
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Python setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+          cache-dependency-path: |
+            **/requirements/*.txt
+
+      - name: Install dependencies
+        run: pip install -r requirements/dev.txt
+
+      - name: Make migrations
+        run: |
+          python manage.py makemigrations
+          python manage.py migrate
+
+      - name: Run tests
+        run: |
+          python manage.py test -v 0 ${{ inputs.test_path }}

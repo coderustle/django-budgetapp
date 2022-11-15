@@ -8,7 +8,7 @@ ARG BUILD_ENV=prod
 # ********************************************************
 FROM python:3.10-slim-bullseye AS base
 
-ARG DOCKER_BUILD_ENV
+ARG BUILD_ENV
 
 # Set the working directory
 WORKDIR /app

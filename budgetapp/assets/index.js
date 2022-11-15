@@ -1,7 +1,9 @@
 /**
- * Libraries.js
+ * Images
  */
-import Alpine from 'alpinejs';
+import './images/favicon.ico'
+import './images/apple-touch-icon.png'
+import './images/android-chrome-192x192.png'
 
 /**
  * Style
@@ -9,13 +11,18 @@ import Alpine from 'alpinejs';
 import './css/main.css';
 
 /**
- * Global objects
+ * Third party libraries
  */
-window.Alpine = Alpine;
+import Alpine from 'alpinejs';
+
+/**
+ * Htmx setup
+ */
 window.htmx = require('htmx.org');
 
 /**
  * Alpine setup
  */
-// Alpine.data('StoreCheckout', StoreCheckout);
 Alpine.start();
+
+console.log("Hello World")

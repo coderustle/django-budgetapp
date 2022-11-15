@@ -62,3 +62,28 @@ postcss                        # A tool for transforming CSS with JavaScript
 tailwindcss                    # A utility-first CSS framework for rapid UI development
 
 ```
+
+### Environment variables explained
+
+```bash
+# Django
+DJANGO_SETTINGS_MODULE      # django settings module
+BUILD_ENV                   # requirements.txt file name to build in docker stage
+SECRET_KEY                  # django secret key
+
+# Database
+DB_NAME                     # postgres database name
+DB_USER                     # postgres datbase user
+DB_PASS                     # postgres database pass
+DB_HOST                     # postgres host
+DB_PORT                     # postgres port
+```
+
+### Contributing
+
+1. Open an issue and describe the changes that you want to do.
+2. Checkout `dev` branch with latest updates
+3. Create a a new branch to work on changes that you want to add.
+4. Push the new branch to GitHub, open a pull request and mention the issue from step 1. Enjoy!
+
+Be kind and polite with others, don't forget we are doing this for fun and because we like to code.

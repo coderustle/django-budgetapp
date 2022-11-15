@@ -85,13 +85,6 @@ ipython_config.py
 # pyenv
 .python-version
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
 
@@ -132,24 +125,19 @@ dmypy.json
 .pyre/
 
 # Ignore build files
-budgetapp/static/css/**
-budgetapp/static/js/**
+**/assets
 
-# Project files that I don't want in the final build
-LICENSE
-README.md
-noxfile.py
-Dockerfile
-.gitignore
+# Project files that I don't want them in the final build
+*.md
+*.yaml
+*.toml
+*.lock
+*.json
 *.config.js
-package.json
-compose.yaml
-.dockerignore
-pyproject.toml
-yarm.lock
-.pre-commit-config.yaml
+*ignore
+Dockerfile
 
-# Project directories that I don't want in the final build
+# Project directories that I don't want them in the final build
 .git
 .github
 .devcontainer

@@ -52,6 +52,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "budgetapp.applications.users.apps.UsersConfig",
+    "budgetapp.applications.budgets.apps.BudgetsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -96,11 +97,13 @@ WSGI_APPLICATION = "budgetapp.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#migration-modules
 MIGRATION_MODULES = {
     "users": "budgetapp.contrib.users.migrations",
+    "budgets": "budgetapp.contrib.budgets.migrations",
 }
 
 # SET CUSTOM USER MODEL
 # -----------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-AUTH_USER_MODEL
+# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting
+# -AUTH_USER_MODEL
 AUTH_USER_MODEL = "users.User"
 
 # https://docs.djangoproject.com/en/4.0/ref/settings/#login-redirect-url
@@ -114,16 +117,20 @@ LOGOUT_REDIRECT_URL = "/users/login/"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation"
+                ".UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation"
+                ".MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+                ".CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+                ".NumericPasswordValidator",
     },
 ]
 

@@ -23,5 +23,9 @@ urlpatterns = [
         "users/",
         include("budgetapp.applications.users.urls", namespace="users"),
     ),
+    path(
+        "budgets/",
+        include("budgetapp.applications.budgets.urls", namespace="budgets")
+    ),
     path("", view=TemplateView.as_view(template_name="home.html")),
 ]

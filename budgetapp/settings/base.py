@@ -52,7 +52,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "budgetapp.applications.users.apps.UsersConfig",
-    "budgetapp.applications.budgets.apps.AppConfig",
+    "budgetapp.applications.budgets.apps.BudgetsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

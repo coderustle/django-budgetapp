@@ -25,7 +25,7 @@ docker compose --profile webapp up
 
 ```
 
-Make sure you update the `DB_HOST` and replace `localhost` with `db` service.
+If you run the app in container, make sure you update the `DB_HOST` and replace `localhost` with `db` service.
 
 ## Run tests
 

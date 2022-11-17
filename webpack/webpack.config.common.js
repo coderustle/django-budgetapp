@@ -7,7 +7,6 @@ const path = require('path');
  * Plugins import
  */
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 const BundleTracker = require('webpack-bundle-tracker');
 
 module.exports = {
@@ -47,11 +46,11 @@ module.exports = {
      * This is the public path where the server will look for static files
      * Something like https://localhost:8000/static/js/index.bundle.js
      */
-    publicPath: 'static/',
+    publicPath: '/static/',
     /**
      * This is the file name that will result from the entries
      */
-    filename: '[name]-[hash].js',
+    filename: '[name]-[fullhash].js',
     /**
      * Everytime webpack runs will clear the '../budgetapp/static/js/ folder
      */
@@ -114,16 +113,6 @@ module.exports = {
    * asset management and injection of environment variables
    */
   plugins: [
-    /**
-     * This plugin is used to extract the css in its own file
-     */
-    new MiniCssExtractPlugin({
-      filename: '[name]-[hash].css',
-    }),
-    /**
-     * This plugin is used to compress the .js modules
-     */
-    new CompressionPlugin({ test: /\.js(\?.*)?$/i }),
     /**
      * This plugin is used to generate a webpack bundle stats
      */

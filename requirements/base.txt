@@ -4,7 +4,7 @@
 django==4.1.3 		                    # https://pypi.org/project/Django/
 django-widget-tweaks==1.4.12            # https://pypi.org/project/django-widget-tweaks/
 django-webpack-loader==1.7.0            # https://pypi.org/project/django-webpack-loader/
-
+django-money==3.0.0                     # https://pypi.org/project/django-money/
 
 # Dependencies
 # -----------------------------------------------------------------------

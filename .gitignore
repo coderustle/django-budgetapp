@@ -140,7 +140,7 @@ dmypy.json
 
 
 # Ignore build files
-**/static/css/**
-**/static/js/**
+**/static/**
+**/static/**
 staticfiles
 webpack/webpack-stats.json

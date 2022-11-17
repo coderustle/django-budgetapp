@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+<!-- Load stylesheet from base.html -->
+{% block stylesheet %}
+{{ block.super }}
+{% endblock stylesheet %}
+
+<!-- Load the scripts in header from base.html -->
+{% block header_script %}
+{{ block.super }}
+{% endblock header_script %}
+
+<!-- Page title -->
+{% block title %}Home - Budgets{% endblock title %}
+
+<!-- Page header from base.html -->
+{% block header %}
+{{ block.super }}
+{% endblock header %}
+
+<!-- The main content -->
+{% block content %}{% endblock content%}
+
+<!-- Page footer form base.html -->
+{% block footer %}
+{{ block.super }}
+{% endblock footer %}
+
+<!-- Footer scripts -->
+{% block footer_script %}
+{{ block.super }}
+{% endblock footer_script %}

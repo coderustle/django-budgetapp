@@ -107,6 +107,9 @@ MIGRATION_MODULES = {
 # -AUTH_USER_MODEL
 AUTH_USER_MODEL = "users.User"
 
+# https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-LOGIN_URL
+LOGIN_URL = "/users/login/"
+
 # https://docs.djangoproject.com/en/4.0/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = "/users/"
 

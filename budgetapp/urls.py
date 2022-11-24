@@ -19,7 +19,7 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", view=TemplateView.as_view(template_name="home.html")),
+    path("", view=TemplateView.as_view(template_name="index.html")),
     path(
         "users/",
         include("budgetapp.applications.users.urls", namespace="users"),

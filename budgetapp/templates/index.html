@@ -1,22 +1,30 @@
 {% extends "base.html" %}
+{% load static %}
 
-{% block title %}
-  Django Budget App
-{% endblock title %}
+{% block title %} Personal Budget App {% endblock title %}
 
 {% block content %}
-  <div class="text-center p-6 space-y-4">
 
-    <h1 class="text-blue-600 text-4xl">Welcome!</h1>
-    <h2 class="text-2xl">This is a Django Budget App</h2>
+<div class="h-screen">
 
-    <div x-data="{ open: false }">
-      <button class="text-white bg-blue-800 p-4" @click="open = !open">Click here!</button>
+  <div class="container p-6 h-full grid gap-6 max-w-screen-2xl">
 
-      <span x-show="open">
-        Hello World!
-      </span>
+    {# Intro #}
+    <div>
+
+      <div class="space-y-4 tracking-wider">
+        <h1 class="text-6xl text-blue-700 font-bold uppercase">Personal Budget App</h1>
+        <h2 class="text-2xl">Create and manage your personal finances using budgets</h2>
+      </div>
+
+      <div>
+
+      </div>
+
     </div>
 
   </div>
+
+</div>
+
 {% endblock content %}

@@ -48,6 +48,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     "webpack_loader",
+    "widget_tweaks",
     "djmoney",
 ]
 

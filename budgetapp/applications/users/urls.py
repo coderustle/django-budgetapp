@@ -21,7 +21,7 @@ urlpatterns = [
     ),
     path(
         "register",
-        view=views.register_page,
+        view=views.register,
         name="register",
     ),
 ]

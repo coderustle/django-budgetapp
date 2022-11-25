@@ -7,12 +7,15 @@
 
 
     <div class="my-10 border border-blue-500 rounded-md p-6 space-y-6 min-w-full md:min-w-[400px]">
-      {# Header #}
+
+
       <div class="text-center">
         <h1 class="text-2xl font-bold text-blue-500">Login</h1>
       </div>
-      <form action="POST" class="w-full">
+
+      <form method="POST" class="w-full" action="{% url 'users:login' %}">
         {% csrf_token %}
+
         <div class="flex flex-col my-2">
           {% render_field form.username.label %}
           {% render_field form.username class="border-2 p-2 my-2 rounded-sm" %}
@@ -24,6 +27,7 @@
         <input class="bg-gray-300 block w-full py-2 my-6 rounded-md text-lg" type="submit" value="Login">
         <input type="hidden" name="next" value="{{ next }}">
       </form>
+
     </div>
 
   </div>

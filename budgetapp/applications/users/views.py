@@ -46,5 +46,7 @@ def login_request(request: HttpRequest) -> HttpResponse:
                 return redirect("budgets:home")
             else:
                 messages.error(request, "Invalid username or password.")
+                return TemplateResponse(request, template=template)
         else:
             messages.error(request, "Invalid username or password.")
+            return TemplateResponse(request, template=template)

@@ -10,7 +10,7 @@
     {# Menu #}
     <ul class="flex space-x-4 text-lg">
       <li class="hover:text-blue-500">
-        <a hx-get="{% url 'users:register' %}" hx-target="#content" href="#">Login</a>
+        <a hx-get="{% url 'users:login' %}" hx-target="#content" href="{% url 'index' %}">Login</a>
       </li>
       <li class="hover:text-blue-500">
         <a hx-get="{% url 'users:register' %}" hx-target="#content" href="{% url 'index' %}">Register</a>

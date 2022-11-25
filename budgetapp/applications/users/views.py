@@ -24,7 +24,7 @@ def register_request(request: HttpRequest) -> HttpResponse:
         return TemplateResponse(request, template=template, context=context)
 
 
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 def login_request(request: HttpRequest) -> HttpResponse:
     """Render the login page and authenticates the user"""
     template = "registration/login.html"

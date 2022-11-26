@@ -44,7 +44,9 @@
 
 <main id="main">
   <!-- Header -->
-  {% block header %}{% endblock header %}
+  {% block header %}
+    {% include '_navbar.html' %}
+  {% endblock header %}
 
   <!-- Main content-->
   {% block content %}{% endblock content %}

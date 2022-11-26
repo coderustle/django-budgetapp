@@ -9,8 +9,10 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.urls import reverse_lazy
 
 from .forms import NewUserForm
+from .utils import HttpResponseHXRedirect
 
 
 @require_http_methods(["GET", "POST"])
@@ -46,7 +48,7 @@ def login_request(request: HttpRequest) -> HttpResponse:
                 return redirect("budgets:home")
             else:
                 messages.error(request, "Invalid username or password.")
-                return TemplateResponse(request, template=template)
+                return HttpResponseHXRedirect(redirect_to=reverse_lazy("index"))
         else:
             messages.error(request, "Invalid username or password.")
-            return TemplateResponse(request, template=template)
+            return HttpResponseHXRedirect(redirect_to=reverse_lazy("index"))

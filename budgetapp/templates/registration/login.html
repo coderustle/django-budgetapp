@@ -1,37 +1,49 @@
-{% extends 'base.html' %}
+{% extends 'base_public.html' %}
 {% load widget_tweaks %}
 
-<div>
+{% block title %}
+  Budget App - Login
+{% endblock title %}
 
-  <div class="container flex justify-center items-center max-w-screen-2xl">
+{% block content %}
+  <div class="mt-10 p-6">
+
+    <div class="container flex justify-center items-center max-w-screen-2xl">
 
 
-    <div class="my-10 border border-blue-500 rounded-md p-6 space-y-6 min-w-full md:min-w-[400px]">
+      <div class="my-10 border border-blue-500 rounded-md p-6 space-y-6 min-w-full md:min-w-[400px]">
 
 
-      <div class="text-center">
-        <h1 class="text-2xl font-bold text-blue-500">Login</h1>
+        <div class="text-center">
+          <h1 class="text-2xl font-bold text-blue-500">Login</h1>
+        </div>
+
+        <form method="POST" class="w-full" action="{% url 'users:login' %}">
+          {% csrf_token %}
+
+          <div class="flex flex-col my-2">
+            {% render_field form.username.label %}
+            {% render_field form.username class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
+          </div>
+          <div class="flex flex-col my-2">
+            {% render_field form.password.label %}
+            {% render_field form.password class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
+          </div>
+          <input class="bg-gray-300 block w-full py-2 my-6 rounded-md text-lg hover:cursor-pointer hover:shadow-lg"
+                 type="submit"
+                 value="Login">
+          <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
       </div>
-
-      <form method="POST" class="w-full" action="{% url 'users:login' %}">
-        {% csrf_token %}
-
-        <div class="flex flex-col my-2">
-          {% render_field form.username.label %}
-          {% render_field form.username class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
-        </div>
-        <div class="flex flex-col my-2">
-          {% render_field form.password.label %}
-          {% render_field form.password class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
-        </div>
-        <input class="bg-gray-300 block w-full py-2 my-6 rounded-md text-lg hover:cursor-pointer hover:shadow-lg"
-               type="submit"
-               value="Login">
-        <input type="hidden" name="next" value="{{ next }}">
-      </form>
 
     </div>
 
   </div>
 
-</div>
+  <!-- Messages -->
+  {% if messages %}
+    {% include "_messages.html" with messages=messages %}
+  {% endif %}
+
+{% endblock content %}

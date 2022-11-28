@@ -1,3 +1,53 @@
-<div>
-  Hello from registration
-</div>
+{% extends 'base_public.html' %}
+{% load widget_tweaks %}
+
+{% block title %}
+  Budget App - Register
+{% endblock title %}
+
+{% block content %}
+  <div class="mt-10 p-6">
+
+    <div class="container flex justify-center items-center max-w-screen-2xl">
+
+
+      <div class="my-10 border border-blue-500 rounded-md p-6 space-y-6 min-w-full md:min-w-[400px]">
+
+
+        <div class="text-center">
+          <h1 class="text-2xl font-bold text-blue-500">Register</h1>
+        </div>
+
+        <form method="POST" class="w-full" action="{% url 'users:register' %}">
+          {% csrf_token %}
+
+          <div class="flex flex-col my-2">
+            {% render_field form.username.label %}
+            {% render_field form.username class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
+          </div>
+          <div class="flex flex-col my-2">
+            {% render_field form.password1.label %}
+            {% render_field form.password1 class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
+          </div>
+          <div class="flex flex-col my-2">
+            {% render_field form.password2.label %}
+            {% render_field form.password2 class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
+          </div>
+          <input class="bg-gray-300 block w-full py-2 my-6 rounded-md text-lg hover:cursor-pointer hover:shadow-lg"
+                 type="submit"
+                 value="Register">
+          <input type="hidden" name="next" value="{{ next }}">
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Messages -->
+  {% if messages %}
+    {% include "_messages.html" with messages=messages %}
+  {% endif %}
+
+{% endblock content %}

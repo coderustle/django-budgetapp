@@ -26,6 +26,10 @@
             {% render_field form.username class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
           </div>
           <div class="flex flex-col my-2">
+            {% render_field form.email.label %}
+            {% render_field form.email class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
+          </div>
+          <div class="flex flex-col my-2">
             {% render_field form.password1.label %}
             {% render_field form.password1 class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
           </div>

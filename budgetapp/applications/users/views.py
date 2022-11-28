@@ -20,21 +20,26 @@ def register_request(request: HttpRequest) -> HttpResponse:
     """Render register page and create new user"""
     template = "registration/register.html"
 
-    if request.method == "GET":
-        form = NewUserForm()
-        context = {"form": form}
-        return TemplateResponse(request, template=template, context=context)
+    if request.method == "POST":
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect("budgets:home")
+        messages.error(
+            request, "Unsuccessful registration. Invalid information."
+        )
+        print(form.errors)
+    form = NewUserForm()
+    context = {"form": form}
+    return TemplateResponse(request, template=template, context=context)
 
 
 @require_http_methods(["GET", "POST"])
 def login_request(request: HttpRequest) -> HttpResponse:
     """Render the login page and authenticates the user"""
     template = "registration/login.html"
-
-    if request.method == "GET":
-        form = AuthenticationForm()
-        context = {"form": form}
-        return TemplateResponse(request, template=template, context=context)
 
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
@@ -58,3 +63,6 @@ def login_request(request: HttpRequest) -> HttpResponse:
             return HttpResponseHXRedirect(
                 redirect_to=reverse_lazy("users:login")
             )
+    form = AuthenticationForm()
+    context = {"form": form}
+    return TemplateResponse(request, template=template, context=context)

@@ -5,18 +5,16 @@
 
 {% block content %}
 
+<!-- Messages -->
+{% if messages %}
+  {% include "_messages.html"%}
+{% endif %}
+
 <div>
 
   <div class="container p-6 grid gap-6 max-w-screen-2xl md:grid-flow-col">
 
-    <div id="content">
-
-    </div>
-
-    <!-- Messages -->
-    {% if messages %}
-      {% include "_messages.html"%}
-    {% endif %}
+    <div id="content"></div>
 
   </div>
 

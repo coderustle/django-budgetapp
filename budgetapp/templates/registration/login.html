@@ -6,6 +6,12 @@
 {% endblock title %}
 
 {% block content %}
+
+  <!-- Messages -->
+  {% if messages %}
+    {% include "_messages.html" with messages=messages %}
+  {% endif %}
+
   <div class="mt-10 p-6">
 
     <div class="container flex justify-center items-center max-w-screen-2xl">
@@ -40,10 +46,5 @@
     </div>
 
   </div>
-
-  <!-- Messages -->
-  {% if messages %}
-    {% include "_messages.html" with messages=messages %}
-  {% endif %}
 
 {% endblock content %}

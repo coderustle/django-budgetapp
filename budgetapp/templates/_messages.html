@@ -1,7 +1,7 @@
 {% for message in messages %}
 <div {% if message.tags %} class="{{ message.tags }}" {% endif %} id="messages"
     role="alert">
-    <span class="block sm:inline mx-6">{{ messages }}</span>
+    <span class="block sm:inline mx-6">{{ message }}</span>
     <span id="button-msg" class="absolute top-0 bottom-0 right-0 px-4 py-3 ml-10">
         <svg v-on:click="hideMessages" class="fill-current h-6 w-6" role="button" xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20">

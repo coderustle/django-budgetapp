@@ -58,9 +58,6 @@ def login_request(request: HttpRequest) -> HttpResponse:
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request=request, user=user)
-                messages.success(
-                    request, f"You are now logged in as {username}."
-                )
                 return redirect("budgets:home")
             else:
                 messages.error(request, "Invalid username or password.")

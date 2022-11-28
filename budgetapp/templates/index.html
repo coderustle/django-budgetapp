@@ -13,13 +13,11 @@
 
     </div>
 
+    <!-- Messages -->
+    {% if messages %}
+      {% include "_messages.html"%}
+    {% endif %}
+
   </div>
-
-  <!-- Messages -->
-  {% if messages %}
-    {% include "_messages.html" with messages=messages %}
-  {% endif %}
-
-</div>
 
 {% endblock content %}

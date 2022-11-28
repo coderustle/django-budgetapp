@@ -37,6 +37,17 @@
             {% render_field form.password2.label %}
             {% render_field form.password2 class="border-2 p-2 my-2 rounded-sm focus:outline-none focus:border-sky-500" %}
           </div>
+
+          {% if form.errors %}
+            {% for field in form %}
+              {% for error in field.errors %}
+                <div class="text-sm text-red-500">
+                    <strong>{{ error|escape }}</strong>
+                </div>
+                  {% endfor %}
+              {% endfor %}
+          {% endif %}
+
           <input class="bg-gray-300 block w-full py-2 my-6 rounded-md text-lg hover:cursor-pointer hover:shadow-lg"
                  type="submit"
                  value="Register">

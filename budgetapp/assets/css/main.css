@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+[x-cloak] {
+  display: none !important;
+}
+
+@layer components {
+  .success {
+    @apply bg-green-400
+    py-3 rounded
+    relative
+    border;
+  }
+  .error {
+    @apply bg-red-400
+    py-3 rounded
+    relative
+    border;
+  }
+}

@@ -1,0 +1,21 @@
+<nav class="bg-gray-100 border-b border-blue-500">
+
+  <div class="container p-6 max-w-screen-2xl flex justify-between">
+    {# Logo #}
+    <div>
+      <a href="{% url 'index' %}">
+        <h1 class="font-bold text-blue-500 text-xl">BUDGET APP</h1>
+      </a>
+    </div>
+    {# Menu #}
+    <ul class="flex space-x-4 text-lg">
+      <li class="hover:text-blue-500">
+        <a href="{% url 'users:login' %}">Login</a>
+      </li>
+      <li class="hover:text-blue-500">
+        <a href="{% url 'users:register' %}">Register</a>
+      </li>
+    </ul>
+  </div>
+
+</nav>

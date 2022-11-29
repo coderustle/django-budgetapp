@@ -20,7 +20,7 @@ urlpatterns = [
         name="logout",
     ),
     path(
-        "register",
+        "register/",
         view=views.register_request,
         name="register",
     ),

@@ -1,0 +1,40 @@
+"""
+fixtures.py
+"""
+from typing import Optional
+from faker import Faker
+from django.contrib.auth import get_user_model
+
+from budgetapp.applications.users.models import User
+
+
+def generate_db_user() -> User:
+    """Create a new user in database"""
+    fake = Faker("ro_Ro")
+    user = get_user_model().objects.create(
+        username=fake.user_name(),
+        password=fake.text(max_nb_chars=10),
+        email=fake.email(),
+    )
+    user.save()
+    return user
+
+
+def generate_data_user(
+    email: Optional[str] = None,
+    username: Optional[str] = None,
+) -> dict:
+    """Generate a dictionary with fake user data"""
+    fake = Faker("ro_Ro")
+
+    email = email if email else fake.email()
+    username = username if username else fake.user_name()
+    password = fake.text(max_nb_chars=10)
+
+    data = {
+        "username": username,
+        "email": email,
+        "password1": password,
+        "password2": password,
+    }
+    return data

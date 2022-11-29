@@ -4,6 +4,7 @@ test_login.py
 from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
+from selenium.webdriver.firefox.options import Options
 from selenium.webdriver import Firefox
 from webdriver_manager.firefox import GeckoDriverManager
 
@@ -31,8 +32,11 @@ class TestLoginPage(TestLiveServerBase):
     def setUpClass(cls) -> None:
         super().setUpClass()
 
+        options = Options()
+        # options.headless = True
+        # options.add_argument("--headless")
         geckodriver = GeckoDriverManager().install()
-        browser = Firefox(executable_path=geckodriver)
+        browser = Firefox(executable_path=geckodriver, options=options)
         cls.page = pom.LoginPage(browser)
         cls.page.url = cls.live_server_url
         cls.page.open()

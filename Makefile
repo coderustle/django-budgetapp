@@ -2,11 +2,11 @@
 #--------------------------------------------------------
 # Unit test commands
 #--------------------------------------------------------
-test-unit:
+test:
 	python manage.py test \
 	tests.unit -v 0 --failfast --keepdb
 
-test-unit-users:
+test-users:
 	python manage.py test \
 	tests.unit.users -v 0 --failfast --keepdb
 

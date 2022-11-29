@@ -25,8 +25,8 @@ class TestBase(TestCase):
         settings.WHITENOISE_AUTOREFRESH = True
 
 
-class TestLogin(TestBase):
-    """Test login functionality"""
+class TestLoginView(TestBase):
+    """Test login page"""
 
     @classmethod
     def setUpClass(cls) -> None:
@@ -37,4 +37,19 @@ class TestLogin(TestBase):
         """Test the template used by the login page"""
         response = self.client.get(self.url)
         expected = "registration/login.html"
+        self.assertTemplateUsed(response=response, template_name=expected)
+
+
+class TestRegisterView(TestBase):
+    """Test register page"""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        super().setUpClass()
+        cls.url = reverse("users:register")
+
+    def test_register_page_template(self):
+        """Test the template used by the register page"""
+        response = self.client.get(self.url)
+        expected = "registration/register.html"
         self.assertTemplateUsed(response=response, template_name=expected)

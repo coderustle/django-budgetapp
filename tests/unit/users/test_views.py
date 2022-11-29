@@ -100,13 +100,3 @@ class TestRegisterView(TestBase):
         response = self.client.get(self.url)
         expected = "registration/register.html"
         self.assertTemplateUsed(response=response, template_name=expected)
-
-    def test_register_new_user(self):
-        """Test register new user. The user is logged in and redirected"""
-
-        data = fixtures.generate_data_user()
-        response = self.client.post(self.url, data=data)
-        expected_url = "/budgets/"
-
-        self.assertEqual(302, response.status_code)
-        self.assertRedirects(response, expected_url)

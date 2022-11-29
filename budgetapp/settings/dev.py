@@ -4,7 +4,19 @@ Django settings for budgetapp project.
 
 # pylint: disable=wildcard-import unused-wildcard-import
 
+import warnings
+
 from .base import *
+
+# Get rid of whitenoise "No directory at" warning, as it's not helpful when running tests.
+
+# Related:
+#   - https://github.com/evansd/whitenoise/issues/215
+#   - https://github.com/evansd/whitenoise/issues/191
+#   - https://github.com/evansd/whitenoise/commit/4204494d44213f7a51229de8bc224cf6d84c01eb
+warnings.filterwarnings(
+    "ignore", message="No directory at", module="whitenoise.base"
+)
 
 # GENERAL
 # -----------------------------------------------------------------------------

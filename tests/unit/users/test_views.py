@@ -16,14 +16,6 @@ class TestBase(TestCase):
     url: str
     user: User
 
-    @classmethod
-    def setUpClass(cls) -> None:
-        super().setUpClass()
-
-        # Get rid of whitenoise "No directory at" warning,
-        # as it's not helpful when running tests.
-        settings.WHITENOISE_AUTOREFRESH = True
-
 
 class TestLoginView(TestBase):
     """Test login page"""

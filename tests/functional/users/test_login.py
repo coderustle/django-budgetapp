@@ -16,14 +16,6 @@ class TestLiveServerBase(StaticLiveServerTestCase):
 
     page: pom.BasePage
 
-    @classmethod
-    def setUpClass(cls) -> None:
-        super().setUpClass()
-
-        # Get rid of whitenoise "No directory at" warning,
-        # as it's not helpful when running tests.
-        settings.WHITENOISE_AUTOREFRESH = True
-
 
 class TestLoginPage(TestLiveServerBase):
     """Test login functionallity"""

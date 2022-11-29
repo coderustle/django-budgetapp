@@ -1,20 +1,36 @@
-<nav class="bg-gray-100 border-b border-blue-500">
+<nav class="bg-gray-100 border border-blue-500 m-4 rounded-md">
 
-  <div class="container p-6 max-w-screen-2xl flex justify-between">
+  <div class="p-6 flex justify-between">
     {# Logo #}
     <div>
-      <a href="{% url 'index' %}">
+      <a href="{% url 'budgets:home' %}">
         <h1 class="font-bold text-blue-500 text-xl">BUDGET APP</h1>
       </a>
     </div>
     {# Menu #}
-    <ul class="flex space-x-4 text-lg">
+    <ul class="flex space-x-4">
+
+      {% if not request.user.is_authenticated %}
+      <li class="hover:text-blue-500">
+        <a href="{% url 'about' %}">About</a>
+      </li>
       <li class="hover:text-blue-500">
         <a href="{% url 'users:login' %}">Login</a>
       </li>
       <li class="hover:text-blue-500">
         <a href="{% url 'users:register' %}">Register</a>
       </li>
+      {% endif %}
+
+      {% if request.user.is_authenticated %}
+        <li class="hover:text-blue-500">
+          <a href="{% url 'budgets:home' %}">Budgets</a>
+        </li>
+        <li class="hover:text-blue-500">
+          <a href="{% url 'users:logout' %}">Logout</a>
+        </li>
+      {% endif %}
+
     </ul>
   </div>
 

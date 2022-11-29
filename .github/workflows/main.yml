@@ -26,14 +26,14 @@ jobs:
   # ==========================================================
   # Run test units
   # ==========================================================
-  test:
+  users:
     needs: build
     if: |
       github.ref_name == 'dev' &&
       github.event_name == 'push'
     uses: madalinpopa/budgetapp/.github/workflows/test.yml@dev
     with:
-      test_path: 'tests.unit'
+      test_path: 'tests.unit.users'
     secrets:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       DB_NAME: ${{ secrets.DEV_DB_NAME }}

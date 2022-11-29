@@ -32,6 +32,16 @@ class TestLoginView(TestBase):
         self.assertTemplateUsed(response=response, template_name=expected)
 
 
+class TestLogoutView(TestBase):
+    """Test logout functionality"""
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        super().setUpClass()
+        cls.url = reverse("users:logout")
+        cls.user = None
+
+
 class TestRegisterView(TestBase):
     """Test register page"""
 

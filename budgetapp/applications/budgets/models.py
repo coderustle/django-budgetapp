@@ -1,4 +1,7 @@
 from django.db import models
+from django.urls import reverse
+
+from guardian.models import GroupObjectPermissionBase, UserObjectPermissionBase
 
 
 class Budget(models.Model):
@@ -11,3 +14,20 @@ class Budget(models.Model):
         indexes = [
             models.Index(fields=["-created"]),
         ]
+        default_permissions = ("add", "change", "delete")
+        permissions = (("view_budget", "View Budget Objects"),)
+        get_latest_by = "created"
+
+    def __str__(self) -> str:
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("budgets:details", kwargs={"pk": self.pk})
+
+
+class BudgetUserObjectPermission(UserObjectPermissionBase):
+    content_object = models.ForeignKey(Budget, on_delete=models.CASCADE)
+
+
+class BudgetGroupObjectPermission(GroupObjectPermissionBase):
+    content_object = models.ForeignKey(Budget, on_delete=models.CASCADE)

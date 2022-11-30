@@ -50,6 +50,7 @@ THIRD_PARTY_APPS = [
     "webpack_loader",
     "widget_tweaks",
     "djmoney",
+    "guardian",
 ]
 
 LOCAL_APPS = [
@@ -138,6 +139,13 @@ AUTH_PASSWORD_VALIDATORS = [
         ".NumericPasswordValidator",
     },
 ]
+
+# Add custom authentication backend
+# https://docs.djangoproject.com/en/4.1/topics/auth/customizing/
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",  # default
+    "guardian.backends.ObjectPermissionBackend",
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

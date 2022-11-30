@@ -4,14 +4,15 @@
 <!-- The main content -->
 {% block content %}
 {{ block.super }}
-<div>
 
-  {# container #}
-  <div class="container lg:max-w-screen-xl">
-    <div class="text-2xl text-blue-500 font-bold text-center p-10 uppercase border-b-2 border-b-blue-500">
-      <h1>Welcome, {{ request.user.username }}!</h1>
-    </div>
+<div class="border border-blue-500 grid">
+
+  <div id="content">
+
+    <h1>Content</h1>
+
   </div>
+
 
 </div>
 

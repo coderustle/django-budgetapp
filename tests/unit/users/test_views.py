@@ -41,7 +41,7 @@ class TestLoginView(TestBase):
         data = {"username": self.user.username, "password": "test1234"}
 
         response = self.client.post(self.url, data=data)
-        expected_url = "/"
+        expected_url = "/budgets/"
 
         self.assertEqual(302, response.status_code)
         self.assertRedirects(response, expected_url)

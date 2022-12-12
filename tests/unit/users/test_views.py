@@ -25,7 +25,7 @@ class TestLoginView(TestBase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         cls.url = reverse("users:login")
-        cls.user = fixtures.generate_db_user()
+        cls.user = fixtures.create_user()
 
     def test_login_page_template(self):
         """Test the template used by the login page"""
@@ -64,7 +64,7 @@ class TestLogoutView(TestBase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         cls.url = reverse("users:logout")
-        cls.user = fixtures.generate_db_user()
+        cls.user = fixtures.create_user()
 
     def test_logout_page_redirection(self):
         """Test if the user is redirected to login page"""

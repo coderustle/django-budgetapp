@@ -9,5 +9,5 @@ app_name = "budgets"
 
 
 urlpatterns = [
-    path("", view=home_page, name="home"),
+    path("budgets/", view=home_page, name="home"),
 ]

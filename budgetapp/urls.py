@@ -30,6 +30,6 @@ urlpatterns = [
     ),
     path(
         "",
-        include("budgetapp.applications.budgets.urls", namespace="budgets"),
+        include("budgetapp.applications.budget.urls", namespace="budget"),
     ),
 ]

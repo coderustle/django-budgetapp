@@ -4,7 +4,7 @@ test_models.py
 from django.test import TestCase
 from tests import fixtures
 
-from budgetapp.applications.budgets.models import Budget
+from budgetapp.applications.budget.models import Budget
 from guardian.shortcuts import assign_perm, get_objects_for_user
 
 
@@ -37,24 +37,24 @@ class TestBudgetModel(TestBase):
     def test_budget_permission_forbiden(self):
         """Test the permission for a budget"""
         budget = Budget.objects.create(name="Test Budget")
-        self.assertFalse(self.user1.has_perm("budgets.view_budget", budget))
+        self.assertFalse(self.user1.has_perm("budget.view_budget", budget))
 
     def test_budget_permission_allowed(self):
         """Test the permission for a budget"""
         budget = Budget.objects.create(name="Test Budget")
-        assign_perm("budgets.view_budget", self.user1, budget)
-        self.assertTrue(self.user1.has_perm("budgets.view_budget", budget))
+        assign_perm("budget.view_budget", self.user1, budget)
+        self.assertTrue(self.user1.has_perm("budget.view_budget", budget))
 
     def test_budget_permission_allowed_for_user(self):
         """Test the permission for a budget"""
         budget1 = Budget.objects.create(name="Test Budget")
         budget2 = Budget.objects.create(name="Test Budget 2")
-        assign_perm("budgets.view_budget", self.user1, budget1)
-        assign_perm("budgets.view_budget", self.user1, budget2)
-        assign_perm("budgets.view_budget", self.user2, budget2)
+        assign_perm("budget.view_budget", self.user1, budget1)
+        assign_perm("budget.view_budget", self.user1, budget2)
+        assign_perm("budget.view_budget", self.user2, budget2)
 
         # all budgets for user1
-        budgets_user1 = get_objects_for_user(self.user1, "budgets.view_budget")
-        budgets_user2 = get_objects_for_user(self.user2, "budgets.view_budget")
+        budgets_user1 = get_objects_for_user(self.user1, "budget.view_budget")
+        budgets_user2 = get_objects_for_user(self.user2, "budget.view_budget")
         self.assertEqual(len(budgets_user1), 2)
         self.assertEqual(len(budgets_user2), 1)

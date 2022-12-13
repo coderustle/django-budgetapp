@@ -22,7 +22,7 @@ class Budget(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("budgets:details", kwargs={"pk": self.pk})
+        return reverse("budget:details", kwargs={"pk": self.pk})
 
 
 class BudgetUserObjectPermission(UserObjectPermissionBase):

@@ -16,5 +16,5 @@ def home_page(request: HttpRequest) -> HttpResponse:
     """
     Budgets home page
     """
-    template = "budgets/home.html"
+    template = "budget/home.html"
     return TemplateResponse(request, template)

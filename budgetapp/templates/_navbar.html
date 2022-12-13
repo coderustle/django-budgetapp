@@ -24,7 +24,7 @@
 
       {% if request.user.is_authenticated %}
         <li class="hover:text-blue-500">
-          <a href="{% url 'budgets:home' %}">Budgets</a>
+          <a href="{% url 'budget:home' %}">Budgets</a>
         </li>
         <li class="hover:text-blue-500">
           <a href="{% url 'users:logout' %}">Logout</a>

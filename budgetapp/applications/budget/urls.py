@@ -5,9 +5,9 @@ from django.urls import path
 
 from .views import home_page
 
-app_name = "budgets"
+app_name = "budget"
 
 
 urlpatterns = [
-    path("budgets/", view=home_page, name="home"),
+    path("budget/", view=home_page, name="home"),
 ]

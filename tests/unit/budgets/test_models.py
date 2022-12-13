@@ -51,7 +51,10 @@ class TestBudgetModel(TestBase):
         budget2 = Budget.objects.create(name="Test Budget 2")
         assign_perm("budgets.view_budget", self.user1, budget1)
         assign_perm("budgets.view_budget", self.user1, budget2)
+        assign_perm("budgets.view_budget", self.user2, budget2)
 
         # all budgets for user1
-        budgets = get_objects_for_user(self.user1, "budgets.view_budget")
-        self.assertEqual(len(budgets), 2)
+        budgets_user1 = get_objects_for_user(self.user1, "budgets.view_budget")
+        budgets_user2 = get_objects_for_user(self.user2, "budgets.view_budget")
+        self.assertEqual(len(budgets_user1), 2)
+        self.assertEqual(len(budgets_user2), 1)

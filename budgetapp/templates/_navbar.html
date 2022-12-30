@@ -1,9 +1,9 @@
-<nav class="bg-gray-100 border border-blue-500 m-4 rounded-md">
+<nav class="border shadow-md m-4 rounded-md bg-white">
 
   <div class="p-6 flex justify-between">
     {# Logo #}
     <div>
-      <a href="{% url 'budgets:home' %}">
+      <a href="{% url 'home' %}">
         <h1 class="font-bold text-blue-500 text-xl">BUDGET APP</h1>
       </a>
     </div>
@@ -12,7 +12,7 @@
 
       {% if not request.user.is_authenticated %}
       <li class="hover:text-blue-500">
-        <a href="{% url 'about' %}">About</a>
+        <a href="{% url 'home' %}">Home</a>
       </li>
       <li class="hover:text-blue-500">
         <a href="{% url 'users:login' %}">Login</a>
@@ -24,7 +24,7 @@
 
       {% if request.user.is_authenticated %}
         <li class="hover:text-blue-500">
-          <a href="{% url 'budgets:home' %}">Budgets</a>
+          <a href="{% url 'budget:home' %}">Budgets</a>
         </li>
         <li class="hover:text-blue-500">
           <a href="{% url 'users:logout' %}">Logout</a>

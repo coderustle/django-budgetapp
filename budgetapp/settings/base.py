@@ -50,11 +50,13 @@ THIRD_PARTY_APPS = [
     "webpack_loader",
     "widget_tweaks",
     "djmoney",
+    "guardian",
 ]
 
 LOCAL_APPS = [
     "budgetapp.applications.users.apps.UsersConfig",
-    "budgetapp.applications.budgets.apps.BudgetsConfig",
+    "budgetapp.applications.budget.apps.BudgetConfig",
+    "budgetapp.applications.transaction.apps.TransactionConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -99,7 +101,9 @@ WSGI_APPLICATION = "budgetapp.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#migration-modules
 MIGRATION_MODULES = {
     "users": "budgetapp.contrib.users.migrations",
-    "budgets": "budgetapp.contrib.budgets.migrations",
+    "budget": "budgetapp.contrib.budget.migrations",
+    "transaction": "budgetapp.contrib.transaction.migrations",
+    "category": "budgetapp.contrib.category.migrations",
 }
 
 # SET CUSTOM USER MODEL
@@ -138,6 +142,13 @@ AUTH_PASSWORD_VALIDATORS = [
         ".NumericPasswordValidator",
     },
 ]
+
+# Add custom authentication backend
+# https://docs.djangoproject.com/en/4.1/topics/auth/customizing/
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",  # default
+    "guardian.backends.ObjectPermissionBackend",
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

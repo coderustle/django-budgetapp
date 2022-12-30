@@ -25,7 +25,7 @@ class TestLoginView(TestBase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         cls.url = reverse("users:login")
-        cls.user = fixtures.generate_db_user()
+        cls.user = fixtures.create_user()
 
     def test_login_page_template(self):
         """Test the template used by the login page"""
@@ -41,7 +41,7 @@ class TestLoginView(TestBase):
         data = {"username": self.user.username, "password": "test1234"}
 
         response = self.client.post(self.url, data=data)
-        expected_url = "/"
+        expected_url = "/budget/"
 
         self.assertEqual(302, response.status_code)
         self.assertRedirects(response, expected_url)
@@ -64,7 +64,7 @@ class TestLogoutView(TestBase):
     def setUpClass(cls) -> None:
         super().setUpClass()
         cls.url = reverse("users:logout")
-        cls.user = fixtures.generate_db_user()
+        cls.user = fixtures.create_user()
 
     def test_logout_page_redirection(self):
         """Test if the user is redirected to login page"""

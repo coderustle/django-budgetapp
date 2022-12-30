@@ -31,7 +31,7 @@ def register_request(request: HttpRequest) -> HttpResponse:
             user = form.save()
             login(request, user)
             messages.success(request, "Registration successful.")
-            return redirect("budgets:home")
+            return redirect("budget:home")
         messages.error(
             request, "Unsuccessful registration. Invalid information."
         )
@@ -58,7 +58,7 @@ def login_request(request: HttpRequest) -> HttpResponse:
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request=request, user=user)
-                return redirect("budgets:home")
+                return redirect("budget:home")
             else:
                 messages.error(request, "Invalid username or password.")
                 return HttpResponseHXRedirect(

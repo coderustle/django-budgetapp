@@ -4,28 +4,28 @@
 
 # Test coverage
 # -----------------------------------------------------------------------
-coverage==6.5.0                         # https://pypi.org/project/coverage/
-django-coverage-plugin==2.0.4           # https://pypi.org/project/django-coverage-plugin/
+coverage==7.1.0                         # https://pypi.org/project/coverage/
+django-coverage-plugin==3.0.0           # https://pypi.org/project/django-coverage-plugin/
 
 # Formatting
 # -----------------------------------------------------------------------
-isort==5.10.1                           # https://pypi.org/project/isort/
-black==22.10.0                          # https://pypi.org/project/black/
+isort==5.12.0                           # https://pypi.org/project/isort/
+black==23.1.0                           # https://pypi.org/project/black/
 
 # Code quality
 # -----------------------------------------------------------------------
-pylint==2.15.5                          # https://pypi.org/project/pylint/
+pylint==2.16.2                          # https://pypi.org/project/pylint/
 pylint-django==2.5.3                    # https://pypi.org/project/pylint-django/
-mypy==0.991                             # https://pypi.org/project/mypy/
+mypy==1.0.0                             # https://pypi.org/project/mypy/
 
 # Stubs
 # -----------------------------------------------------------------------
-django-stubs==1.13.0                    # https://pypi.org/project/django-stubs/
+django-stubs==1.14.0                    # https://pypi.org/project/django-stubs/
 types-selenium==3.141.9                 # https://pypi.org/project/types-selenium/
 
 # Utils
 # -----------------------------------------------------------------------
-ipython==8.6.0                          # https://pypi.org/project/ipython/
-# django-debug-toolbar==3.7.0           # https://pypi.org/project/django-debug-toolbar/
-pre-commit==2.20.0                      # https://pypi.org/project/pre-commit/
+ipython==8.10.0                          # https://pypi.org/project/ipython/
+# django-debug-toolbar==3.7.0            # https://pypi.org/project/django-debug-toolbar/
+pre-commit==3.0.4                        # https://pypi.org/project/pre-commit/
 

@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 # pylint: disable=wildcard-import unused-wildcard-import
 
-import os
 import mimetypes
+import os
 from pathlib import Path
 
 mimetypes.add_type("text/javascript", ".gz", True)
@@ -95,16 +95,6 @@ TEMPLATES = [
 
 # https://docs.djangoproject.com/en/4.0/ref/settings/#wsgi-application
 WSGI_APPLICATION = "budgetapp.wsgi.application"
-
-# MIGRATIONS
-# -----------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/4.0/ref/settings/#migration-modules
-MIGRATION_MODULES = {
-    "users": "budgetapp.contrib.users.migrations",
-    "budget": "budgetapp.contrib.budget.migrations",
-    "transaction": "budgetapp.contrib.transaction.migrations",
-    "category": "budgetapp.contrib.category.migrations",
-}
 
 # SET CUSTOM USER MODEL
 # -----------------------------------------------------------------------------

@@ -2,10 +2,10 @@
 test_models.py
 """
 from django.test import TestCase
-from tests import fixtures
-
-from budgetapp.applications.budget.models import Budget
 from guardian.shortcuts import assign_perm, get_objects_for_user
+
+from budgetapp.applications.budgets.models import Budget
+from tests import fixtures
 
 
 class TestBase(TestCase):

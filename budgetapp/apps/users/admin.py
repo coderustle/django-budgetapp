@@ -3,7 +3,7 @@ admin.py
 """
 from django.contrib import admin
 
-from budgetapp.applications.users.models import User
+from budgetapp.apps.users.models import User
 
 
 @admin.register(User)

@@ -2,10 +2,11 @@
 fixtures.py
 """
 from typing import Optional
-from faker import Faker
-from django.contrib.auth import get_user_model
 
-from budgetapp.applications.users.models import User
+from django.contrib.auth import get_user_model
+from faker import Faker
+
+from budgetapp.apps.users.models import User
 
 
 def create_user() -> User:
@@ -37,4 +38,5 @@ def generate_user_data(
         "password1": password,
         "password2": password,
     }
+    return data
     return data

@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from budgetapp.applications.users.models import User
+from budgetapp.apps.users.models import User
 
 
 class NewUserForm(UserCreationForm):

@@ -3,7 +3,7 @@ test_forms.py
 """
 from django.test import TestCase
 
-from budgetapp.applications.users.forms import NewUserForm
+from budgetapp.apps.users.forms import NewUserForm
 
 
 class TestBase(TestCase):

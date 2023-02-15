@@ -4,10 +4,8 @@ test_views.py
 
 from django.test import TestCase
 from django.urls import reverse
-from django.conf import settings
 
-
-from budgetapp.applications.users.models import User
+from budgetapp.apps.users.models import User
 from tests import fixtures
 
 

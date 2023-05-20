@@ -29,7 +29,8 @@ def register_request(request: HttpRequest) -> HttpResponse:
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)
+            backend = "django.contrib.auth.backends.ModelBackend"
+            login(request, user, backend=backend)
             messages.success(request, "Registration successful.")
             return redirect("budget:home")
         messages.error(
@@ -38,6 +39,7 @@ def register_request(request: HttpRequest) -> HttpResponse:
         print(form.errors)
         context = {"form": form}
         return TemplateResponse(request, template=template, context=context)
+    return HttpResponse(status_code=400)
 
 
 @require_http_methods(["GET", "POST"])
@@ -69,3 +71,4 @@ def login_request(request: HttpRequest) -> HttpResponse:
             return HttpResponseHXRedirect(
                 redirect_to=reverse_lazy("users:login")
             )
+    return HttpResponse(status_code=400)

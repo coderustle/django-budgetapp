@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: ['./budgetapp/**/*.{html,js}'],
+    darkMode: 'class',
     theme: {
         extend: {
             container: {

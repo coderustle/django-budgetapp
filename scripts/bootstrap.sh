@@ -34,4 +34,4 @@ yarn install
 # =========================================
 # Build docker images
 # =========================================
-docker compose up
+# docker compose up

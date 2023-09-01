@@ -17,7 +17,8 @@ This is a django web app for personal finance budgeting.
 2. Install requirements: `pip install -r requirements/local.txt`
 3. Run bootstrap.sh script: `./scripts/bootstrap.sh`
 4. Start database and Node: `docker compose up -d`
-5. Start Django: `python manage.py runserver`
+5. Run database migrations: `python manage.py migrate`
+6. Start Django: `python manage.py runserver`
 
 If you want to run the app in docker container run the following command:
 

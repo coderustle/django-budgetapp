@@ -36,6 +36,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@alpinejs/persist": "^3.13.0",
     "alpinejs": "^3.10.4",
     "htmx.org": "^1.8.2"
   }

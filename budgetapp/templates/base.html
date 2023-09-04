@@ -2,7 +2,7 @@
 {% load render_bundle from webpack_loader %}
 {% load webpack_static from webpack_loader %}
 <!DOCTYPE html>
-<html lang="ro" x-data="{darkMode: false}" :class="{'dark': darkMode}">
+<html lang="ro" x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode}">
 
 <head>
   <!-- Required meta tags -->

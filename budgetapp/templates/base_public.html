@@ -19,7 +19,12 @@
 {% endblock header %}
 
 <!-- The main content -->
-{% block content %}{% endblock content %}
+{% block content %}
+  <!-- Messages -->
+  {% if messages %}
+    {% include "_messages.html" with messages=messages %}
+  {% endif %}
+{% endblock content %}
 
 <!-- Page footer form base.html -->
 {% block footer %}

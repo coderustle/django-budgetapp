@@ -21,8 +21,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path(
         "",
-        view=TemplateView.as_view(template_name="home.html"),
-        name="home",
+        view=TemplateView.as_view(template_name="index.html"),
+        name="index",
     ),
     path(
         "users/",

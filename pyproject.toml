@@ -14,7 +14,7 @@ wrap_length = 1
 
 [tool.black]
 line-length = '80'
-exclude = ['**/migrations/*.py']
+extend-exclude = '^/migrations/*.py'
 
 [tool.coverage.run]
 include = ['budgetapp/*']
@@ -25,19 +25,19 @@ plugins = ['django_coverage_plugin']
 template_extensions = 'html, txt, tex, email'
 
 [tool.pylint.'MESSAGES CONTROL']
-disable=['fixme', 'too-few-public-methods', 'too-many-arguments', 'too-many-function-args']
-good-names=['pk', 'k']
-ignore='migrations'
+disable = ['fixme', 'too-few-public-methods', 'too-many-arguments', 'too-many-function-args']
+good-names = ['pk', 'k']
+ignore = 'migrations'
 
 [tool.pylint.MASTER]
 load-plugins = ['pylint_django']
-django-settings-module='budgetapp.settings.development'
+django-settings-module = 'budgetapp.settings.development'
 
 [tool.pylint.similarities]
-min-similarity-lines=10
-ignore-docstrings='yes'
-ignore-comments='yes'
-ignore-imports='yes'
+min-similarity-lines = 10
+ignore-docstrings = 'yes'
+ignore-comments = 'yes'
+ignore-imports = 'yes'
 
 [tool.mypy]
 plugins = ["mypy_django_plugin.main"]

@@ -1,0 +1,36 @@
+{% load widget_tweaks %}
+
+<div class="mt-10 p-6">
+
+  <div class="container flex justify-center items-center max-w-screen-2xl">
+
+    <div
+        class="my-10 border border-primary dark:bg-dark dark:text-white rounded-md p-6 space-y-6 min-w-full md:min-w-[400px]">
+
+      <div>
+        <h1 class="text-2xl font-bold">Login</h1>
+      </div>
+
+      <form method="POST" class="w-full flex flex-col gap-6" action="{% url 'users:login' %}">
+        {% csrf_token %}
+
+        <div class="space-y-4">
+          <div class="flex flex-col">
+            {% render_field form.username placeholder=form.username.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary" %}
+          </div>
+          <div class="flex flex-col">
+            {% render_field form.password placeholder=form.password.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary" %}
+          </div>
+        </div>
+        <input
+            class="dark:bg-dark border border-primary block w-full py-2 my-10 rounded-md text-lg focus:outline-none focus:border-secondary hover:cursor-pointer hover:shadow-lg"
+            type="submit"
+            value="Login">
+        <input type="hidden" name="next" value="{{ next }}">
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

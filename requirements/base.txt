@@ -11,5 +11,6 @@ django-guardian==2.4.0        # https://pypi.org/project/django-guardian/
 # -----------------------------------------------------------------------
 python-dotenv==1.0.0          # https://pypi.org/project/python-dotenv/
 whitenoise==6.5.0             # https://pypi.org/project/whitenoise/
+django-htmx==1.16.0           # https://pypi.org/project/django-htmx/
 
 

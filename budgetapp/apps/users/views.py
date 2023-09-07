@@ -1,15 +1,15 @@
 """
 Django views
 """
-from django.template.response import TemplateResponse
-from django.views.decorators.http import require_http_methods
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import AuthenticationForm
 from django.http.request import HttpRequest
 from django.http.response import HttpResponse
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
-from django.contrib import messages
+from django.template.response import TemplateResponse
 from django.urls import reverse_lazy
+from django.views.decorators.http import require_http_methods
 
 from .forms import NewUserForm
 from .utils import HttpResponseHXRedirect
@@ -45,7 +45,10 @@ def register_request(request: HttpRequest) -> HttpResponse:
 @require_http_methods(["GET", "POST"])
 def login_request(request: HttpRequest) -> HttpResponse:
     """Render the login page and authenticates the user"""
-    template = "registration/login.html"
+    if request.htmx:
+        template = "registration/partials/login.html"
+    else:
+        template = "registration/login.html"
 
     if request.method == "GET":
         form = AuthenticationForm()

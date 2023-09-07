@@ -16,6 +16,9 @@
 <!-- Page header from base.html -->
 {% block header %}
   {{ block.super }}
+  <div class="p-4">
+    {% include "_theme.html" %}
+  </div>
 {% endblock header %}
 
 <!-- The main content -->

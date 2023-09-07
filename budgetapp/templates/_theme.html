@@ -1,23 +1,27 @@
 <style type="text/css" media="all">
 
-input:checked + label {
+  input:checked + label {
     background: #000;
-}
+  }
 
-input:checked + label:after {
+  input:checked + label:after {
     left: 50px;
     transform: translateX(-100%);
     background: linear-gradient(180deg, #777, #3a3a3a);
-}
+  }
 
-label, label:after {
+  label, label:after {
     transition: 0.3s
-}
+  }
 
 </style>
 
 <div class="flex justify-end">
-    <input type="checkbox" name="theme-toggle" id="theme-toggle" 
-    x-on:click="darkMode = !darkMode" class="w-0 h-0 hidden"/>
-    <label for="theme-toggle" class="w-[50px] h-[20px] relative block bg-gray-100 rounded-[20px] shadow-inner cursor-pointer after:content-[''] after:w-[18px] after:h-[18px] after:absolute after:top-[1px] after:left-[2px] after:rounded-[18px] after:shadow-md after:bg-gradient-to-r after:from-secondary after:to-[#d8860b]">
+  <input type="checkbox" name="theme-toggle" id="theme-toggle"
+         x-on:click="darkMode = !darkMode" class="w-0 h-0 hidden"/>
+  <label for="theme-toggle"
+         class="w-[50px] h-[20px] relative block bg-gray-100 rounded-[20px]
+                shadow-inner cursor-pointer after:content-[''] after:w-[18px] after:h-[18px]
+                after:absolute after:top-[1px] after:left-[2px] after:rounded-[18px]
+                after:shadow-md after:bg-gradient-to-r after:from-secondary after:to-[#d8860b]">
 </div>

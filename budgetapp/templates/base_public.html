@@ -16,7 +16,12 @@
 <!-- Page header from base.html -->
 {% block header %}
   {{ block.super }}
-  <div class="p-4">
+  <div class="container p-4 flex justify-between items-center">
+    <p class="uppercase font-semibold text-primary">
+      <a href="{% url 'index' %}">
+        Budget <span class="text-secondary">Breeze</span>
+      </a>
+    </p>
     {% include "_theme.html" %}
   </div>
 {% endblock header %}

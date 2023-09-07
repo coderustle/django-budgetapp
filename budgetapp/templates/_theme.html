@@ -17,7 +17,7 @@
 </style>
 
 <div class="flex justify-end">
-  <input type="checkbox" name="theme-toggle" id="theme-toggle"
+  <input type="checkbox" name="theme-toggle" id="theme-toggle" :checked="darkMode"
          x-on:click="darkMode = !darkMode" class="w-0 h-0 hidden"/>
   <label for="theme-toggle"
          class="w-[50px] h-[20px] relative block bg-gray-100 rounded-[20px]

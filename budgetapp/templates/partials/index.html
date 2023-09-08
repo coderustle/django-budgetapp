@@ -1,0 +1,32 @@
+<div class="flex flex-col gap-8 text-center dark:text-white">
+  {# Title + Subtitle + Text #}
+  <div class="flex flex-col gap-8">
+    <h1 class="uppercase text-6xl font-bold">
+      <span class="text-primary">Budget</span>
+      <span class="text-secondary">Breeze</span>
+    </h1>
+    <h2 class="text-3xl font-medium">Your budget, your breeze.</h2>
+    <p class="text-lg max-w-xl self-center">
+      Take control of your finances with Budget Breeze, an intuitive and
+      comprehensive budgeting tool designed to simplify your financial life.
+    </p>
+  </div>
+  {# Button #}
+  <div class="text-lg flex gap-8 justify-center">
+    <button
+      hx-get="{% url 'users:login' %}"
+      hx-swap="innerHTML"
+      hx-target="#index-content"
+      hx-push-url="true"
+      class="border border-secondary rounded-lg px-4 py-2 cursor-pointer"
+    >
+      Login
+    </button>
+    <a
+      href="{% url 'users:register' %}"
+      class="border border-primary rounded-lg px-4 py-2 cursor-pointer"
+    >
+      Register
+    </a>
+  </div>
+</div>

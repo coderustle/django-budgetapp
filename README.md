@@ -15,7 +15,7 @@ This is a django web app for personal finance budgeting.
 
 1. Create a virtual environment: `python3.11 -m venv .venv && source .venv/bin/activate`
 2. Install requirements: `pip install -r requirements/local.txt`
-3. Run bootstrap.sh script: `./scripts/bootstrap.sh`
+3. Run bootstrap.sh script: `./scripts/bootstrap.py`
 4. Start database and Node: `docker compose up -d`
 5. Run database migrations: `python manage.py migrate`
 6. Start Django: `python manage.py runserver`

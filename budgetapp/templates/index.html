@@ -32,10 +32,15 @@
         </div>
 
         <div class="text-lg flex gap-8 justify-center">
-          <button hx-get="{% url 'users:login' %}" hx-swap="innerHTML" hx-target="#index-content" hx-push-url="true"
+          <button hx-get="{% url 'users:login' %}"
+                  hx-swap="innerHTML"
+                  hx-target="#index-content"
+                  hx-push-url="true"
                   class="border border-secondary rounded-lg px-4 py-2 cursor-pointer">Login
           </button>
-          <a href="{% url 'users:register' %}" class="border border-primary rounded-lg px-4 py-2 cursor-pointer">Register</a>
+          <a href="{% url 'users:register' %}" class="border border-primary rounded-lg px-4 py-2 cursor-pointer">
+            Register
+          </a>
         </div>
 
       </div>

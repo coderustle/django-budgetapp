@@ -18,7 +18,8 @@
   {{ block.super }}
   <div class="container p-4 flex justify-between items-center">
     <p class="font-semibold text-primary">
-      <button class="uppercase" hx-get="{% url 'budget:index' %}" hx-push-url="true" hx-swap="innerHTML", hx-target="#index-content">
+      <button class="uppercase" hx-get="{% url 'budget:index' %}" hx-push-url="true" hx-swap="innerHTML" ,
+              hx-target="#index-content">
         Budget <span class="text-secondary">Breeze</span>
       </button>
     </p>

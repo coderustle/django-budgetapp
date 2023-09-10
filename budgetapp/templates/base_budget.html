@@ -2,12 +2,12 @@
 
 <!-- Load stylesheet from base.html -->
 {% block stylesheet %}
-{{ block.super }}
+  {{ block.super }}
 {% endblock stylesheet %}
 
 <!-- Load the scripts in header from base.html -->
 {% block header_script %}
-{{ block.super }}
+  {{ block.super }}
 {% endblock header_script %}
 
 <!-- Page title -->
@@ -24,14 +24,14 @@
   {% if messages %}
     {% include "_messages.html" with messages=messages %}
   {% endif %}
-{% endblock content%}
+{% endblock content %}
 
 <!-- Page footer form base.html -->
 {% block footer %}
-{{ block.super }}
+  {{ block.super }}
 {% endblock footer %}
 
 <!-- Footer scripts -->
 {% block footer_script %}
-{{ block.super }}
+  {{ block.super }}
 {% endblock footer_script %}

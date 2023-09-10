@@ -49,3 +49,14 @@ exclude = ["budgetapp/contrib", "tests", "gunicorn.conf.py"]
 
 [tool.django-stubs]
 django_settings_module = "budgetapp.settings.development"
+
+[tool.djlint]
+profile="django"
+blank_line_after_tag="load,extends,endblock,endif,endfor"
+blank_line_before_tag="if,for"
+preserve_blank_lines=true
+max_line_length=120
+
+
+
+

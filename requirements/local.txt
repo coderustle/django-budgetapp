@@ -28,4 +28,5 @@ types-selenium==3.141.9            # https://pypi.org/project/types-selenium/
 ipython==8.14.0                    # https://pypi.org/project/ipython/
 # django-debug-toolbar==4.1.0      # https://pypi.org/project/django-debug-toolbar/
 pre-commit==3.3.3                  # https://pypi.org/project/pre-commit/
+djlint
 

@@ -144,3 +144,6 @@ dmypy.json
 **/static/**
 staticfiles
 webpack/webpack-stats.json
+
+# Ignore database files
+data/**

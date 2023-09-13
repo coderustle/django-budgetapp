@@ -1,25 +1,4 @@
 services:
-  db:
-    image: postgres:14
-    container_name: db
-    restart: always
-    env_file:
-      - ./.env
-    environment:
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASS}
-      - POSTGRES_DB=${DB_NAME}
-    ports:
-      - '5432:5432'
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 5s
-
   node:
     image: node:18-alpine
     container_name: node
@@ -30,31 +9,15 @@ services:
     volumes:
       - ./:/app
 
-  webapp:
-    container_name: webapp
-    image: webapp
+  litestream:
+    container_name: litestream
+    image: litestream/litestream
     env_file:
       - .env
-    build:
-      context: .
-      target: development
-      dockerfile: Dockerfile
-      args:
-        - BUILD_ENV=local
-    depends_on:
-      - db
-      - node
-    entrypoint:
-      - python
-      - manage.py
-      - runserver
-      - 0.0.0.0:8000
-    ports:
-      - '8000:8000'
+    environment:
+      - REPLICA_URL=${REPLICA_URL}
+      - LITESTREAM_AZURE_ACCOUNT_KEY=${LITESTREAM_AZURE_ACCOUNT_KEY}
+    working_dir: /app
+    command: replicate ./data/development.db ${REPLICA_URL}
     volumes:
-      - .:/opt/budgetapp
-    profiles:
-      - webapp
-
-volumes:
-  pgdata: null
+      - ./:/app

@@ -1,0 +1,4 @@
+dbs:
+  - path: /opt/budgetapp/data/development.db
+    replicas:
+      - url: abs://budgetapp@databases/dev

@@ -1,14 +1,14 @@
 # syntax=docker/dockerfile:1
 
-# Used to specify the requirements.txt
-ARG BUILD_ENV=prod
+# requirements.txt file to install in virtual environment
+ARG PYTHON_REQUIREMENTS_FILE=prod
 
 # ********************************************************
 # * Docker Django - BASE IMAGE                           *
 # ********************************************************
 FROM python:3.11-slim-bullseye AS base
 
-ARG BUILD_ENV
+ARG PYTHON_REQUIREMENTS_FILE
 
 # Set the working directory
 WORKDIR /app
@@ -31,7 +31,12 @@ COPY requirements /var/tmp/requirements
 
 # Install python packages
 RUN pip install --upgrade pip && \
-    pip install --no-cache-dir -r /var/tmp/requirements/${BUILD_ENV}.txt
+    pip install --no-cache-dir -r /var/tmp/requirements/${PYTHON_REQUIREMENTS_FILE}.txt
+
+# Download the static build of Litestream directly into the path & make it executable.
+# This is done in the builder and copied as the chmod doubles the size.
+ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.11/litestream-v0.3.11-linux-amd64.tar.gz /tmp/litestream.tar.gz
+RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
 
 # ********************************************************
 # * Docker Django - TEST                                 *
@@ -41,27 +46,22 @@ FROM python:3.11-slim-bullseye AS development
 # Build parameters
 ARG DJANGO_SETTINGS_MODULE
 ARG SECRET_KEY
-ARG DB_NAME
-ARG DB_HOST
-ARG DB_PASS
-ARG DB_USER
 
 ENV DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
 ENV SECRET_KEY=${SECRET_KEY}
-ENV DB_NAME=${DB_NAME}
-ENV DB_HOST=${DB_HOST}
-ENV DB_PASS=${DB_PASS}
-ENV DB_USER=${DB_USER}
 
 # Set the working directory
 WORKDIR /opt/project_name
 
 # Copy build from base
 COPY --from=base /opt/venv /opt/venv
+COPY --from=base /usr/local/bin/litestream /usr/local/bin/litestream
+
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy the project files
 COPY . .
+COPY ./litestream.yml /etc/litestream.yml
 
 # Expose Django port
 EXPOSE 8000
@@ -90,10 +90,13 @@ WORKDIR /opt/budgetapp
 
 # Copy build from base
 COPY --from=base /opt/venv /opt/venv
+COPY --from=base /usr/local/bin/litestream /usr/local/bin/litestream
+
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy the project files
 COPY . .
+COPY ./litestream.yml /etc/litestream.yml
 
 # Expose django port
 EXPOSE 8000 2222

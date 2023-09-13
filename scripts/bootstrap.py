@@ -22,14 +22,12 @@ def create_environment_variables():
         random.choice(string.ascii_letters + string.digits) for _ in range(50)
     )
     environments = f"""
-    BUILD_ENV=local
-    SECRET_KEY={secret}
+    PYTHON_REQUIREMENTS_FILE=local
     DJANGO_SETTINGS_MODULE=budgetapp.settings.dev
+    SECRET_KEY={secret}
     DJANGO_DEBUG=True
-    DB_NAME=budgetapp_dev
-    DB_HOST=localhost
-    DB_PASS=abc123
-    DB_USER=budget
+    LITESTREAM_AZURE_ACCOUNT_KEY="op://Development/budgetapp-storage-key/credential"
+    REPLICA_URL="abs://budgetapp@databases/dev"
     """
     env_path = PROJECT_ROOT / ".env"
     with open(env_path, "w") as env:

@@ -14,15 +14,11 @@ jobs:
     if: |
       github.ref_name == 'dev' &&
       github.event_name == 'push'
-    uses: madalinpopa/budgetapp/.github/workflows/build.yml@dev
+    uses: ./.github/workflows/build.yml
     secrets:
-      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_USERNAME: ${{ vars.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DB_NAME: ${{ secrets.DEV_DB_NAME }}
-      DB_USER: ${{ secrets.DEV_DB_USER }}
-      DB_PASS: ${{ secrets.DEV_DB_PASS }}
-      DB_HOST: ${{ secrets.DEV_DB_HOST }}
   # ==========================================================
   # Run test units
   # ==========================================================
@@ -31,12 +27,8 @@ jobs:
     if: |
       github.ref_name == 'dev' &&
       github.event_name == 'push'
-    uses: madalinpopa/budgetapp/.github/workflows/test.yml@dev
+    uses: ./.github/workflows/test.yml
     with:
       test_path: 'tests.unit.users'
     secrets:
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DB_NAME: ${{ secrets.DEV_DB_NAME }}
-      DB_USER: ${{ secrets.DEV_DB_USER }}
-      DB_PASS: ${{ secrets.DEV_DB_PASS }}
-      DB_HOST: ${{ secrets.DEV_DB_HOST }}

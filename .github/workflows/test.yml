@@ -7,10 +7,6 @@ on:
         default: 'Development'
         required: false
         type: string
-      settings:
-        default: 'budgetapp.settings.dev'
-        required: false
-        type: string
       test_path:
         default: 'tests.unit'
         required: false

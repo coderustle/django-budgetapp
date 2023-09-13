@@ -4,15 +4,11 @@ on:
   workflow_call:
     inputs:
       image_name:
-        default: 'budgetapp'
+        default: 'budgetbreeze'
         required: false
         type: string
       environment:
         default: 'Development'
-        required: false
-        type: string
-      settings:
-        default: 'budgetapp.settings.dev'
         required: false
         type: string
       build_env:
@@ -28,19 +24,9 @@ on:
         required: false
         type: string
     secrets:
-      DB_NAME:
-        required: true
-      DB_USER:
-        required: true
-      DB_PASS:
-        required: true
-      DB_HOST:
-        required: true
       SECRET_KEY:
         required: true
       DOCKERHUB_TOKEN:
-        required: true
-      DOCKERHUB_USERNAME:
         required: true
 
 jobs:
@@ -61,7 +47,7 @@ jobs:
       - name: Login to DockerHub
         uses: docker/login-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build
@@ -71,13 +57,8 @@ jobs:
           target: ${{ inputs.target }}
           push: true
           build-args: |
-            DB_NAME=${{ inputs.DB_NAME }}
-            DB_HOST=${{ inputs.DB_HOST }}
-            DB_PASS=${{ inputs.DB_PASS }}
-            DB_USER=${{ inputs.DB_USER }}
             SECRET_KEY=${{ secrets.SECRET_KEY }}
-            ENVIRONMENT=${{ inputs.build_env }}
-            DJANGO_SETTINGS_MODULE=${{ inputs.settings }}
+            DJANGO_SETTINGS_MODULE=${{ vars.DJANGO_SETTINGS_MODULE }}
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}
           cache-to: type=inline

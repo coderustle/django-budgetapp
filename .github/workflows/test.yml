@@ -18,43 +18,22 @@ on:
     secrets:
       SECRET_KEY:
         required: true
-      DB_NAME:
-        required: true
-      DB_USER:
-        required: true
-      DB_PASS:
-        required: true
-      DB_HOST:
-        required: true
 
 jobs:
   test:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     env:
-      DJANGO_SETTINGS_MODULE: ${{ inputs.settings }}
+      DJANGO_SETTINGS_MODULE: ${{ vars.DJANGO_SETTINGS_MODULE }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
-      DB_NAME: ${{ secrets.DB_NAME }}
-      DB_USER: ${{ secrets.DB_USER }}
-      DB_PASS: ${{ secrets.DB_PASS }}
-      DB_HOST: ${{ secrets.DB_HOST }}
 
-    services:
-      db:
-        image: postgres:14
-        env:
-          POSTGRES_DB: ${{ secrets.DB_NAME }}
-          POSTGRES_USER: ${{ secrets.DB_USER }}
-          POSTGRES_PASSWORD: ${{ secrets.DB_PASS }}
-        ports:
-          - 5432:5432
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
           cache: 'yarn'
 
       - name: Install node packages

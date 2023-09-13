@@ -3,10 +3,6 @@ name: Build template
 on:
   workflow_call:
     inputs:
-      image_name:
-        default: 'budgetbreeze'
-        required: false
-        type: string
       environment:
         default: 'Development'
         required: false
@@ -17,10 +13,6 @@ on:
         type: string
       target:
         default: 'development'
-        required: false
-        type: string
-      tag:
-        default: 'dev'
         required: false
         type: string
     secrets:
@@ -59,6 +51,6 @@ jobs:
           build-args: |
             SECRET_KEY=${{ secrets.SECRET_KEY }}
             DJANGO_SETTINGS_MODULE=${{ vars.DJANGO_SETTINGS_MODULE }}
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/budgetbreeze:dev
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}
           cache-to: type=inline

@@ -54,6 +54,6 @@ jobs:
             SECRET_KEY=${{ secrets.SECRET_KEY }}
             DJANGO_SETTINGS_MODULE=${{ vars.DJANGO_SETTINGS_MODULE }}
             PYTHON_REQUIREMENTS_FILE=${{ inputs.requirements }}
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/budgetbreeze:dev
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/budgetbreeze:dev
           cache-from: type=registry,ref=${{ secrets.DOCKERHUB_USERNAME }}/${{ inputs.image_name }}:${{ inputs.tag }}
           cache-to: type=inline

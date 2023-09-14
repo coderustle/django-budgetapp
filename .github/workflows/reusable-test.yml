@@ -42,7 +42,7 @@ jobs:
 
       - name: Run tests
         run: |
-          docker run -it --rm \
+          docker run --rm \
             ${{ secrets.DOCKERHUB_USERNAME }}/budgetbreeze:dev \
             python manage.py test -v 0 \
             ${{ inputs.test_path }}

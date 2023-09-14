@@ -13,6 +13,7 @@ jobs:
   build:
     uses: ./.github/workflows/reusable-build.yml
     secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
   # ==========================================================
@@ -24,4 +25,6 @@ jobs:
     with:
       test_path: 'tests.unit.users'
     secrets:
+      DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}

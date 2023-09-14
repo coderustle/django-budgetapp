@@ -66,15 +66,12 @@ tailwindcss                    # A utility-first CSS framework for rapid UI deve
 ```bash
 # Django
 DJANGO_SETTINGS_MODULE      # django settings module
-BUILD_ENV                   # requirements.txt file name to build in docker stage
+PYTHON_REQUIREMENTS_FILE    # requirements.txt file name to build in docker
 SECRET_KEY                  # django secret key
 
-# Database
-DB_NAME                     # postgres database name
-DB_USER                     # postgres datbase user
-DB_PASS                     # postgres database pass
-DB_HOST                     # postgres host
-DB_PORT                     # postgres port
+# LiteStream
+REPLICA_URL                  # The place where litestream to replicate db
+LITESTREAM_AZURE_ACCOUNT_KEY # Azure account key used by litestream
 ```
 
 ## Contributing

@@ -38,11 +38,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Pull Docker image
-        run: docker pull ${{ vars.DOCKERHUB_USERNAME }}/budgetbreeze:dev
+        run: docker pull ${{ secrets.DOCKERHUB_USERNAME }}/budgetbreeze:dev
 
       - name: Run tests
         run: |
           docker run -it --rm \
-            ${{ vars.DOCKERHUB_USERNAME }}/budgetbreeze:dev \
+            ${{ secrets.DOCKERHUB_USERNAME }}/budgetbreeze:dev \
             python manage.py test -v 0 \
             ${{ inputs.test_path }}

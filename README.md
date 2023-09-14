@@ -10,26 +10,18 @@ This is a django web app for personal finance budgeting.
 - Django
 - Alpine.js
 - Tailwindcss
+- Litestream
 
 ## Run locally
 
 1. Create a virtual environment: `python3.11 -m venv .venv && source .venv/bin/activate`
 2. Install requirements: `pip install -r requirements/local.txt`
 3. Run bootstrap.sh script: `./scripts/bootstrap.py`
-4. Start database and Node: `docker compose up -d`
-5. Run database migrations: `python manage.py migrate`
+4. Run database migrations: `python manage.py migrate`
+5. Start litestream and Node: `docker compose up -d`
 6. Start Django: `python manage.py runserver`
 
-If you want to run the app in docker container run the following command:
-
-```bash
-
-docker compose --profile webapp build
-docker compose --profile webapp up
-
-```
-
-If you run the app in container, make sure you update the `DB_HOST` and replace `localhost` with `db` service.
+**Note:** For litestream you need to update the `REPLICA_URL` in `docker-compose.yml` to point to a local file path.
 
 ## Run tests
 

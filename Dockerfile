@@ -4,9 +4,9 @@
 ARG PYTHON_REQUIREMENTS_FILE=prod
 
 # ********************************************************
-# * Docker Django - BASE IMAGE                           *
+# * BUILD PYTHON VIRTUAL ENVIRONMENT - BASE IMAGE        *
 # ********************************************************
-FROM python:3.11-slim-bullseye AS base
+FROM python:3.11-slim-bookworm AS base
 
 ARG PYTHON_REQUIREMENTS_FILE
 
@@ -37,11 +37,27 @@ RUN pip install --upgrade pip && \
 # This is done in the builder and copied as the chmod doubles the size.
 ADD https://github.com/benbjohnson/litestream/releases/download/v0.3.11/litestream-v0.3.11-linux-amd64.tar.gz /tmp/litestream.tar.gz
 RUN tar -C /usr/local/bin -xzf /tmp/litestream.tar.gz
+# ********************************************************
+# * BUILD STATIC FILES - STAGE                           *
+# ********************************************************
+FROM node:lts-bookworm AS static
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the project files
+COPY . .
+
+# Enable yarn
+RUN corepack enable
+
+# Install packages
+RUN yarn install && yarn run build:prod
 
 # ********************************************************
-# * Docker Django - TEST                                 *
+# * Docker Django - Development                          *
 # ********************************************************
-FROM python:3.11-slim-bullseye AS development
+FROM python:3.11-slim-bookworm AS development
 
 # Build parameters
 ARG DJANGO_SETTINGS_MODULE
@@ -51,25 +67,29 @@ ENV DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE}
 ENV SECRET_KEY=${SECRET_KEY}
 
 # Set the working directory
-WORKDIR /opt/project_name
+WORKDIR /opt/budgetapp
 
-# Copy build from base
+# Copy build from base stage
 COPY --from=base /opt/venv /opt/venv
-COPY --from=base /usr/local/bin/litestream /usr/local/bin/litestream
+# Copu staticfiles from static stage
+COPY --from=static /app/budgetapp/static /opt/budgetapp/budgetapp/static
 
 ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy the project files
 COPY . .
-COPY ./litestream.yml /etc/litestream.yml
 
 # Expose Django port
 EXPOSE 8000
 
+# Run migrations and collectstatic
+RUN python manage.py migrate && \
+    python manage.py collectstatic
+
 # ********************************************************
 # * Docker Django - PRODUCTION                           *
 # ********************************************************
-FROM python:3.11-slim-bullseye
+FROM python:3.11-slim-bookworm as production
 
 # Enable SSH in Azure App Service Custom Container
 # The passowrd is standard for Azure and needs to be like this

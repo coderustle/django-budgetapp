@@ -1,20 +1,18 @@
-name: Build
+name: Development
+run-name: Development workflow
 
 on:
   push:
     branches:
       - dev
-      - main
+
 
 jobs:
   # ==========================================================
   # Build Docker image
   # ==========================================================
   build:
-    if: |
-      github.ref_name == 'dev' &&
-      github.event_name == 'push'
-    uses: ./.github/workflows/build.yml
+    uses: ./.github/workflows/reusable-build.yml
     secrets:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -23,10 +21,7 @@ jobs:
   # ==========================================================
   users:
     needs: build
-    if: |
-      github.ref_name == 'dev' &&
-      github.event_name == 'push'
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/reusable-test.yml
     with:
       test_path: 'tests.unit.users'
     secrets:

@@ -18,10 +18,8 @@ This is a django web app for personal finance budgeting.
 2. Install requirements: `pip install -r requirements/local.txt`
 3. Run bootstrap.sh script: `./scripts/bootstrap.py`
 4. Run database migrations: `python manage.py migrate`
-5. Start litestream and Node: `docker compose up -d`
+5. Generate static files: `yarn run build:dev`
 6. Start Django: `python manage.py runserver`
-
-**Note:** For litestream you need to update the `REPLICA_URL` in `docker-compose.yml` to point to a local file path.
 
 ## Run tests
 

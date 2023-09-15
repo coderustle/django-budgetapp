@@ -71,8 +71,10 @@ WORKDIR /opt/budgetapp
 
 # Copy build from base stage
 COPY --from=base /opt/venv /opt/venv
-# Copu staticfiles from static stage
+# Copy staticfiles from static stage
 COPY --from=static /app/budgetapp/static /opt/budgetapp/budgetapp/static
+# Copy webpack-stats.json
+COPY --from=static /app/webpack /opt/budgetapp/webpack
 
 ENV PATH="/opt/venv/bin:$PATH"
 

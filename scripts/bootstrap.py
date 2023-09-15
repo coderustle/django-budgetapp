@@ -41,11 +41,20 @@ def init_node_environment():
     subprocess.run(["yarn", "install"], shell=True)
 
 
+def install_pre_commit():
+    """
+    Run pre-commit install
+    """
+    subprocess.run(["pre-commit", "install"], shell=True)
+
+
 def main():
     logger.info("Create .env file")
     create_environment_variables()
     logger.info("Install node packages")
     init_node_environment()
+    logger.info("Install pre-commit")
+    install_pre_commit()
 
 
 if __name__ == "__main__":

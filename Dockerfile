@@ -118,7 +118,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy the project files
 COPY . .
-COPY ./litestream.yml /etc/litestream.yml
+COPY ./scripts/litestream.yml /etc/litestream.yml
 
 # Expose django port
 EXPOSE 8000 2222

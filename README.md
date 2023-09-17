@@ -70,6 +70,8 @@ SECRET_KEY                  # django secret key
 # LiteStream
 REPLICA_URL                  # The place where litestream to replicate db
 LITESTREAM_AZURE_ACCOUNT_KEY # Azure account key used by litestream
+DEV_DB_PATH                  # Path to dev database
+PROD_DB_PATH                 # Path to prod database
 ```
 
 ## Contributing

@@ -2,7 +2,7 @@
 {% load render_bundle from webpack_loader %}
 {% load webpack_static from webpack_loader %}
 <!DOCTYPE html>
-<html lang="ro" x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode}">
+<html style="height: 100%" lang="en" x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode}">
 
 <head>
   <!-- Required meta tags -->
@@ -10,7 +10,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name=”robots” content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="description" content="Personal Budget Application"/>
-  <meta name="author" content="Madalin Popa">
 
   {% block meta_social %}
     <meta property="og:locale" content="en_EN"/>
@@ -22,7 +21,7 @@
     <meta property="article:publisher" content="https://www.facebook.com/"/>
   {% endblock meta_social %}
 
-  <link rel="canonical" href="https://project.ro/"/>
+  <link rel="canonical" href="https://budgetbreeze.com/"/>
   <link rel="shortcut icon" type="image/png" href="{% webpack_static 'images/favicon.ico' %}"/>
   <link rel="apple-touch-icon" type="image/png" href="{% webpack_static 'apple-touch-icon' %}">
 
@@ -40,9 +39,9 @@
 
 </head>
 
-<body class="dark:bg-dark">
+<body class="dark:bg-dark dark:text-white h-full">
 
-<main id="main" class="grid gap-12">
+<main id="main" class="h-full">
   <!-- Header -->
   {% block header %}{% endblock header %}
 

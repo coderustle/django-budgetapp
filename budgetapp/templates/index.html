@@ -1,52 +1,43 @@
 {% extends "base_public.html" %}
-{% load static %}
 
-{% block title %} Personal Budget App {% endblock title %}
+{% block title %} Budget Breeze {% endblock title %}
 
 {% block content %}
 
-  <!-- Messages -->
-  {% if messages %}
-    {% include "_messages.html" %}
-  {% endif %}
+{{ block.super }}
 
-  <div class="bg-white text-black dark:bg-dark font-poppins h-screen">
+<div id="index-content" class="container p-4 h-full">
+  <div class="text-center flex flex-col gap-8 my-10">
 
-    <div id="index-content" class="container grid gap-20">
+    <div class="flex flex-col gap-4 md:gap-8">
+      <h1 class="uppercase text-4xl md:text-6xl font-bold">
+        <span class="text-primary">Budget</span>
+        <span class="text-secondary">Breeze</span>
+      </h1>
+      <h2 class="text-2xl md:text-3xl font-medium">
+        Your budget, your breeze.
+      </h2>
 
-      <div class="dark:text-white text-center flex flex-col gap-8">
+      <p class="text-lg max-w-xl self-center">
+        Take control of your finances with Budget Breeze, an intuitive and comprehensive budgeting tool
+        designed to simplify your financial life.
+      </p>
+    </div>
 
-        <div class="flex flex-col gap-8">
-          <h1 class="uppercase text-6xl font-bold">
-            <span class="text-primary">Budget</span>
-            <span class="text-secondary">Breeze</span>
-          </h1>
-
-          <h2 class="text-3xl font-medium">Your budget, your breeze.</h2>
-
-          <p class="text-lg max-w-xl self-center">
-            Take control of your finances with Budget Breeze, an intuitive and comprehensive budgeting tool
-            designed to simplify your financial life.
-          </p>
-
-        </div>
-
-        <div class="text-lg flex gap-8 justify-center">
-          <button hx-get="{% url 'users:login' %}"
-                  hx-swap="innerHTML"
-                  hx-target="#index-content"
-                  hx-push-url="true"
-                  class="border border-secondary rounded-lg px-4 py-2 cursor-pointer">Login
-          </button>
-          <a href="{% url 'users:register' %}" class="border border-primary rounded-lg px-4 py-2 cursor-pointer">
-            Register
-          </a>
-        </div>
-
-      </div>
-
+    <div class="text-lg flex gap-8 justify-center">
+      <button hx-get="{% url 'users:login' %}"
+          hx-swap="innerHTML"
+          hx-target="#index-content"
+          hx-push-url="true"
+          class="border border-secondary rounded-lg px-4 py-2 cursor-pointer">
+        Login
+      </button>
+      <a href="{% url 'users:register' %}" class="border border-primary rounded-lg px-4 py-2 cursor-pointer">
+        Register
+      </a>
     </div>
 
   </div>
+</div>
 
 {% endblock content %}

@@ -1,6 +1,6 @@
 # Budget App
 
-[![Build](https://github.com/madalinpopa/budgetapp/actions/workflows/main.yml/badge.svg?branch=dev)](https://github.com/madalinpopa/budgetapp/actions/workflows/main.yml)
+[![Build](https://github.com/coderustle/django-budgetapp/actions/workflows/dev.yml/badge.svg?branch=dev)](https://github.com/coderustle/django-budgetapp/actions/workflows/dev.yml)
 
 Budget App is a tool designed to help you manage your money. Built on the Django platform, it offers an easy way to keep track of your finances. The clean design, thanks to Tailwindcss, ensures a user-friendly experience.
 

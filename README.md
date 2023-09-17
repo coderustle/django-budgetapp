@@ -68,8 +68,8 @@ PYTHON_REQUIREMENTS_FILE    # requirements.txt file name to build in docker
 SECRET_KEY                  # django secret key
 
 # LiteStream
-REPLICA_URL                  # The place where litestream to replicate db
-LITESTREAM_AZURE_ACCOUNT_KEY # Azure account key used by litestream
+REPLICA_URL                  # (Optional) Replica db url path (Azure, S3)
+LITESTREAM_AZURE_ACCOUNT_KEY # (Optional) Azure storage account key
 DEV_DB_PATH                  # Path to dev database
 PROD_DB_PATH                 # Path to prod database
 ```

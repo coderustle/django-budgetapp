@@ -1,16 +1,28 @@
 # Budget App
 
-This is a django web app for personal finance budgeting.
-
 [![Build](https://github.com/madalinpopa/budgetapp/actions/workflows/main.yml/badge.svg?branch=dev)](https://github.com/madalinpopa/budgetapp/actions/workflows/main.yml)
+
+Budget App is a tool designed to help you manage your money. Built on the Django platform, it offers an easy way to keep track of your finances. The clean design, thanks to Tailwindcss, ensures a user-friendly experience.
 
 ## Technology stack
 
-- Htmx
-- Django
-- Alpine.js
-- Tailwindcss
-- Litestream
+**Django**
+Django is the primary web framework that powers the app, making it easier to build web applications quickly and with less code.
+
+**Htmx**
+Htmx allows parts of web pages to be updated seamlessly without a full page reload, providing a smooth and dynamic user
+
+**Alpine.js**
+A minimal framework for composing JavaScript-rich components, Alpine.js offers functionality similar to Vue but with a smaller footprint. It helps create dynamic components within the app.
+
+**Tailwindcss**
+This utility-first CSS framework aids in creating custom, responsive designs quickly, giving the app its modern and sleek appearance.
+
+**Litestream**
+Used for database replication, ensuring data integrity and availability. It also provides integration with storage platforms like Azure.
+
+**Webpack**
+ A module bundler, Webpack is used to package and optimize JavaScript and CSS assets for the app.
 
 ## Run locally
 
@@ -18,8 +30,10 @@ This is a django web app for personal finance budgeting.
 2. Install requirements: `pip install -r requirements/local.txt`
 3. Run bootstrap.sh script: `./scripts/bootstrap.py`
 4. Run database migrations: `python manage.py migrate`
-5. Generate static files: `yarn run build:dev`
+5. Generate static files: `yarn run build:prod`
 6. Start Django: `python manage.py runserver`
+
+If you want to build and auto-reload static files run `docker compose up -d`
 
 ## Run tests
 
@@ -68,8 +82,10 @@ PYTHON_REQUIREMENTS_FILE    # requirements.txt file name to build in docker
 SECRET_KEY                  # django secret key
 
 # LiteStream
-REPLICA_URL                  # The place where litestream to replicate db
-LITESTREAM_AZURE_ACCOUNT_KEY # Azure account key used by litestream
+REPLICA_URL                  # (Optional) Replica db url path (Azure, S3)
+LITESTREAM_AZURE_ACCOUNT_KEY # (Optional) Azure storage account key
+DEV_DB_PATH                  # Path to dev database
+PROD_DB_PATH                 # Path to prod database
 ```
 
 ## Contributing

@@ -28,7 +28,7 @@ DEBUG = True
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "data/development.db",
+        "NAME": BASE_DIR / "data/dev.db",
     }
 }
 

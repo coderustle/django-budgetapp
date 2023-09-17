@@ -21,3 +21,5 @@ services:
     command: replicate ./data/development.db ${REPLICA_URL}
     volumes:
       - ./:/app
+    profiles:
+      - litestream

@@ -27,7 +27,9 @@ def create_environment_variables():
     SECRET_KEY={secret}
     DJANGO_DEBUG=True
     LITESTREAM_AZURE_ACCOUNT_KEY="op://Development/budgetapp-storage-key/credential"
-    REPLICA_URL="abs://budgetapp@databases/dev"
+    REPLICA_URL="abs://budgetapp@databases/prod/prod.db"
+    DEV_DB_PATH="./data/dev.db"
+    PROD_DB_PATH="./data/prod.db"
     """
     env_path = PROJECT_ROOT / ".env"
     with open(env_path, "w") as env:

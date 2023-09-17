@@ -2,7 +2,7 @@
 {% load render_bundle from webpack_loader %}
 {% load webpack_static from webpack_loader %}
 <!DOCTYPE html>
-<html lang="ro" x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode}">
+<html lang="en" x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode}">
 
 <head>
   <!-- Required meta tags -->
@@ -39,7 +39,7 @@
 
 </head>
 
-<body class="dark:bg-dark h-full">
+<body class="dark:bg-dark dark:text-white h-full">
 
 <main id="main" class="h-full">
   <!-- Header -->

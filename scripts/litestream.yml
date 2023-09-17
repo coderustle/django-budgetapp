@@ -1,9 +1,9 @@
 dbs:
-  # Use Azure storage account to store database replica
-  # - path: /opt/budgetapp/data/development.db
-  #   replicas:
-  #     - url: abs://budgetapp@databases/dev
-  # Store database replica locally
-  - path: ./data/development.b
+  # Replicate production database in Azure Storage Account
+  - path: /opt/budgetapp/data/prod.db
     replicas:
-      - path: ./data/replica
+      - url: abs://budgetapp@databases/prod/prod.db
+  # Replicate development database locally
+  - path: ./data/dev.db
+    replicas:
+      - path: ./data/replica/dev.db

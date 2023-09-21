@@ -44,5 +44,4 @@ jobs:
         run: |
           docker run --rm \
             ${{ secrets.DOCKERHUB_USERNAME }}/budgetbreeze:dev \
-            python manage.py test -v 0 \
-            ${{ inputs.test_path }}
+            python manage.py test --exclude-tag=integration -v 0

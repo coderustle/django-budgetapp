@@ -2,6 +2,7 @@
 test_login.py
 """
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from django.test import tag
 from selenium.webdriver import Firefox
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
@@ -10,12 +11,14 @@ from webdriver_manager.firefox import GeckoDriverManager
 from tests.integration import pom
 
 
+@tag("integration")
 class TestLiveServerBase(StaticLiveServerTestCase):
     """Base live server class"""
 
     page: pom.BasePage
 
 
+@tag("integration")
 class TestLoginPage(TestLiveServerBase):
     """Test login functionallity"""
 

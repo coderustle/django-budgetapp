@@ -21,8 +21,8 @@ class TestLoginView(TestBase):
     """Test login page"""
 
     @classmethod
-    def setUpClass(cls) -> None:
-        super().setUpClass()
+    def setUpTestData(cls) -> None:
+        super().setUpTestData()
         cls.url = reverse("users:login")
         cls.user = fixtures.create_user()
 
@@ -60,8 +60,8 @@ class TestLogoutView(TestBase):
     """Test logout functionality"""
 
     @classmethod
-    def setUpClass(cls) -> None:
-        super().setUpClass()
+    def setUpTestData(cls) -> None:
+        super().setUpTestData()
         cls.url = reverse("users:logout")
         cls.user = fixtures.create_user()
 
@@ -103,7 +103,12 @@ class TestRegisterView(TestBase):
     def test_register_new_user(self):
         """Test register new user form"""
 
-        data = fixtures.generate_user_data()
+        data = {
+            "username": "demo",
+            "email": "demo@exemple.com",
+            "password1": "Pass@word23",
+            "password2": "Pass@word23",
+        }
 
         response = self.client.post(self.url, data)
         expected_url = "/budget/"

@@ -18,7 +18,10 @@ from .utils import HttpResponseHXRedirect
 @require_http_methods(["GET", "POST"])
 def register_request(request: HttpRequest) -> HttpResponse:
     """Render register page and create new user"""
-    template = "registration/register.html"
+    if request.htmx:
+        template = "registration/partials/register.html"
+    else:
+        template = "registration/register.html"
 
     if request.method == "GET":
         form = NewUserForm()
@@ -36,7 +39,6 @@ def register_request(request: HttpRequest) -> HttpResponse:
         messages.error(
             request, "Unsuccessful registration. Invalid information."
         )
-        print(form.errors)
         context = {"form": form}
         return TemplateResponse(request, template=template, context=context)
     return HttpResponse(status_code=400)

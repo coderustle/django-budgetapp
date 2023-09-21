@@ -1,22 +1,24 @@
 """
 test_login.py
 """
-from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-
-from selenium.webdriver.firefox.options import Options
+from django.test import tag
 from selenium.webdriver import Firefox
+from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
 
-from tests.functional import pom
+from tests.integration import pom
 
 
+@tag("integration")
 class TestLiveServerBase(StaticLiveServerTestCase):
     """Base live server class"""
 
     page: pom.BasePage
 
 
+@tag("integration")
 class TestLoginPage(TestLiveServerBase):
     """Test login functionallity"""
 
@@ -25,12 +27,14 @@ class TestLoginPage(TestLiveServerBase):
         super().setUpClass()
 
         options = Options()
+        # Enable this options if you don't want to open the browser
         # options.headless = True
         # options.add_argument("--headless")
         geckodriver = GeckoDriverManager().install()
-        browser = Firefox(executable_path=geckodriver, options=options)
+        service = Service(executable_path=geckodriver)
+        browser = Firefox(service=service, options=options)
         cls.page = pom.LoginPage(browser)
-        cls.page.url = cls.live_server_url
+        cls.page.url = f"{cls.live_server_url}/users/login"
         cls.page.open()
 
     @classmethod
@@ -40,5 +44,5 @@ class TestLoginPage(TestLiveServerBase):
 
     def test_login_page_title(self):
         """Test the login page title in browser"""
-        expected = "Personal Budget App - Login"
+        expected = "Budget Breeze - Login"
         self.assertEqual(expected, self.page.title)

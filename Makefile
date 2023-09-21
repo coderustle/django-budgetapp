@@ -19,23 +19,15 @@ run-dev:
 	-p 8000:8000 budgetapp:dev bash
 
 #--------------------------------------------------------
-# Unit test commands
+# Run unit tests
 #--------------------------------------------------------
 test:
-	python manage.py test \
-	tests.unit -v 0 --failfast --keepdb
-
-test-users:
-	python manage.py test \
-	tests.unit.users -v 0 --failfast --keepdb
+	python manage.py test --exclude-tag=integration \
+	-v 0 --failfast --keepdb
 
 #--------------------------------------------------------
-# Functional test commands
+# Run integration tests
 #--------------------------------------------------------
-test-functional:
+test-integration:
 	python manage.py test \
-	tests.functional -v 0 --failfast --keepdb
-
-test-functional-users:
-	python manage.py test \
-	tests.functional.users -v 0 --failfast --keepdb
+	tests.integration -v 0 --failfast --keepdb

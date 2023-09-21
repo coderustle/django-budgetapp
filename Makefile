@@ -32,10 +32,6 @@ test-users:
 #--------------------------------------------------------
 # Functional test commands
 #--------------------------------------------------------
-test-functional:
+test-integration:
 	python manage.py test \
-	tests.functional -v 0 --failfast --keepdb
-
-test-functional-users:
-	python manage.py test \
-	tests.functional.users -v 0 --failfast --keepdb
+	tests.integration -v 0 --failfast --keepdb

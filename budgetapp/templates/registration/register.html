@@ -8,9 +8,7 @@
 
 {% block content %}
 
-  {% if messages %}
-    {% include "_messages.html" with messages=messages %}
-  {% endif %}
+  {{ block.super }}
 
   <div class="mt-10 p-6">
     <div class="container flex max-w-screen-2xl items-center justify-center">

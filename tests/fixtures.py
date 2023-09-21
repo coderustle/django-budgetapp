@@ -39,4 +39,3 @@ def generate_user_data(
         "password2": password,
     }
     return data
-    return data

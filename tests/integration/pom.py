@@ -1,8 +1,8 @@
 """
 Page object model.
 """
-from typing import Optional
 from collections import namedtuple
+from typing import Optional
 
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
@@ -81,6 +81,10 @@ class BaseElement:
     def text(self) -> str:
         """Return the text of an element"""
         return self.element.text
+
+    def input(self, value) -> None:
+        """Add input text"""
+        self.element.send_keys(value)
 
 
 class LoginPage(BasePage):

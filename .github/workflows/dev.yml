@@ -17,9 +17,9 @@ jobs:
       DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
   # ==========================================================
-  # Run test units
+  # Run unit tests
   # ==========================================================
-  users:
+  unit:
     needs: build
     uses: ./.github/workflows/reusable-test.yml
     with:

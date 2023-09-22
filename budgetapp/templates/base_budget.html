@@ -16,9 +16,13 @@
 <!-- Page header from base.html -->
 {% block header %}
   {{ block.super }}
-  <div class="2xl:container p-4 flex justify-between items-center">
+  <div x-data="{showMenu: false, showBar: false}"
+       class="2xl:container p-4 flex justify-between items-center">
     <div class="flex gap-4">
-
+      <button class="md:hidden z-10" @click.prevent="showMenu = !showMenu">
+        {% include "budgets/_hamburger-icon.html" %}
+        {% include "budgets/_close-icon.html" %}
+      </button>
       <button class="uppercase font-semibold text-primary"
               hx-get="{% url 'budget:home' %}"
               hx-push-url="true"
@@ -26,7 +30,23 @@
               hx-target="#index-content">
         Budget <span class="text-secondary">Breeze</span>
       </button>
-      <ul class="flex flex-col p-4 gap-2 border">
+      {# mobile menu #}
+      <div x-show="showMenu" x-transition
+           class="md:hidden absolute p-4 top-0 left-0 h-full border-r border-primary w-1/3 backdrop-blur-md bg-white/30 dark:bg-dark/30">
+        <ul class="flex flex-col gap-4 mt-12">
+          <li>
+            <a href="#">Accounts</a>
+          </li>
+          <li>
+            <a href="#">Budgets</a>
+          </li>
+          <li>
+            <a href="#">Transactions</a>
+          </li>
+        </ul>
+      </div>
+      {# desktop menu #}
+      <ul class="hidden md:flex justify-center items-center gap-4">
         <li>
           <a href="#">Accounts</a>
         </li>

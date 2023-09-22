@@ -3,17 +3,20 @@
 
 <!-- The main content -->
 {% block content %}
-{{ block.super }}
+  {{ block.super }}
 
-<div class="border border-blue-500 grid">
+  <div class="2xl:container px-4 border">
 
-  <div id="content" class="bg-white min-h-[50px]">
+    <div class="grid md:grid-cols-[1fr_3fr] lg:grid-cols-[1fr_5fr] gap-6">
+      {% include 'budgets/_navbar.html' %}
 
-    <h1>Content</h1>
+      <div id="content-budget" class="border w-full">
+
+        <h1>Content</h1>
+
+      </div>
+    </div>
 
   </div>
 
-
-</div>
-
-{% endblock content%}
+{% endblock content %}

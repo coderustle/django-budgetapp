@@ -17,15 +17,27 @@
 {% block header %}
   {{ block.super }}
   <div class="2xl:container p-4 flex justify-between items-center">
-    <p class="font-semibold text-primary">
-      <button class="uppercase"
+    <div class="flex gap-4">
+
+      <button class="uppercase font-semibold text-primary"
               hx-get="{% url 'budget:home' %}"
               hx-push-url="true"
               hx-swap="innerHTML"
               hx-target="#index-content">
         Budget <span class="text-secondary">Breeze</span>
       </button>
-    </p>
+      <ul class="flex flex-col p-4 gap-2 border">
+        <li>
+          <a href="#">Accounts</a>
+        </li>
+        <li>
+          <a href="#">Budgets</a>
+        </li>
+        <li>
+          <a href="#">Transactions</a>
+        </li>
+      </ul>
+    </div>
     <div class="flex gap-4 justify-center items-center">
       <a href="{% url 'users:logout' %}">Logout</a>
       {% include "_theme.html" %}

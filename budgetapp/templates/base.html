@@ -1,70 +1,90 @@
 {% load static %}
 {% load render_bundle from webpack_loader %}
 {% load webpack_static from webpack_loader %}
+
 <!DOCTYPE html>
-<html style="height: 100%" lang="en" x-data="{darkMode: $persist(false)}" :class="{'dark': darkMode}">
+<html style="height: 100%"
+      lang="en"
+      x-data="{darkMode: $persist(false)}"
+      :class="{'dark': darkMode}">
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name=”robots” content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-  <meta name="description" content="Personal Budget Application"/>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name
+          robots
+          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="description" content="Personal Budget Application" />
 
-  {% block meta_social %}
-    <meta property="og:locale" content="en_EN"/>
-    <meta property="og:type" content="Personal Budget Application"/>
-    <meta property="og:title" content="Personal Budget Application"/>
-    <meta property="og:description" content="Personal Budget Application"/>
-    <meta property="og:url" content="https://budgetapp.madalintech.com/"/>
-    <meta property="og:site_name" content="Personal Budget Application"/>
-    <meta property="article:publisher" content="https://www.facebook.com/"/>
-  {% endblock meta_social %}
+    {% block meta_social %}
+      <meta property="og:locale" content="en_EN" />
+      <meta property="og:type" content="Personal Budget Application" />
+      <meta property="og:title" content="Personal Budget Application" />
+      <meta property="og:description" content="Personal Budget Application" />
+      <meta property="og:url" content="https://budgetapp.madalintech.com/" />
+      <meta property="og:site_name" content="Personal Budget Application" />
+      <meta property="article:publisher" content="https://www.facebook.com/" />
+    {% endblock meta_social %}
 
-  <link rel="canonical" href="https://budgetbreeze.com/"/>
-  <link rel="shortcut icon" type="image/png" href="{% webpack_static 'images/favicon.ico' %}"/>
-  <link rel="apple-touch-icon" type="image/png" href="{% webpack_static 'apple-touch-icon' %}">
+    <link rel="canonical" href="https://budgetbreeze.com/" />
+    <link rel="shortcut icon"
+          type="image/png"
+          href="{% webpack_static 'images/favicon.ico' %}" />
+    <link rel="apple-touch-icon"
+          type="image/png"
+          href="{% webpack_static 'apple-touch-icon' %}">
 
-  <!-- Load CSS -->
-  {% block stylesheet %}
-    {% render_bundle 'index' 'css' %}
-  {% endblock stylesheet %}
+    <!-- Load CSS -->
+    {% block stylesheet %}
+      {% render_bundle 'index' 'css' %}
+    {% endblock stylesheet %}
 
-  <title>{% block title %}Personal Budget Application{% endblock %}</title>
+    <title>
 
-  {% block header_script %}
-    <!-- Load JS -->
+      {% block title %}
+        Personal Budget Application
+      {% endblock title %}
 
-  {% endblock header_script %}
+    </title>
 
-</head>
+    {% block header_script %}
+      <!-- Load JS -->
 
-<body class="dark:bg-dark dark:text-white h-full">
+    {% endblock header_script %}
 
-<main id="main" class="h-full">
-  <!-- Header -->
-  {% block header %}{% endblock header %}
+  </head>
 
-  <!-- Main content-->
-  {% block content %}{% endblock content %}
+  <body class="dark:bg-dark dark:text-white h-full">
 
-  <!-- Footer -->
-  {% block footer %}{% endblock footer %}
-</main>
+    <main id="main" class="h-full">
+      <!-- Header -->
+      {% block header %}
+      {% endblock header %}
 
-<!-- Javascript-->
-{% block footer_script %}
-  {% render_bundle 'alpine' 'js' %}
-  {% render_bundle 'htmx' 'js' %}
-  {% render_bundle 'index' 'js' %}
-  <script>
+      <!-- Main content-->
+      {% block content %}
+      {% endblock content %}
+
+      <!-- Footer -->
+      {% block footer %}
+      {% endblock footer %}
+
+    </main>
+
+    <!-- Javascript-->
+    {% block footer_script %}
+      {% render_bundle 'alpine' 'js' %}
+      {% render_bundle 'htmx' 'js' %}
+      {% render_bundle 'index' 'js' %}
+      <script>
     document.body.addEventListener('htmx:configRequest', (event) => {
       event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
     });
-  </script>
+      </script>
 
-{% endblock footer_script %}
+    {% endblock footer_script %}
 
-</body>
+  </body>
 
 </html>

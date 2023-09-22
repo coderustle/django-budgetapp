@@ -11,19 +11,78 @@
 {% endblock header_script %}
 
 <!-- Page title -->
-{% block title %}Home - Budgets{% endblock title %}
+{% block title %}
+  Home - Budgets
+{% endblock title %}
 
 <!-- Page header from base.html -->
 {% block header %}
   {{ block.super }}
+  <div x-data="{showMenu: false, showBar: false}"
+       class="2xl:container p-4 flex justify-between items-center">
+    <div class="flex gap-4">
+      <button class="md:hidden z-10" @click.prevent="showMenu = !showMenu">
+        {% include "budgets/_hamburger-icon.html" %}
+        {% include "budgets/_close-icon.html" %}
+      </button>
+      <button class="uppercase font-semibold text-primary"
+              hx-get="{% url 'budget:home' %}"
+              hx-push-url="true"
+              hx-swap="innerHTML"
+              hx-target="#index-content">
+        Budget <span class="text-secondary">Breeze</span>
+      </button>
+      {# mobile menu #}
+      <div x-show="showMenu"
+           x-transition
+           class="md:hidden absolute p-4 top-0 left-0 h-full border-r border-primary w-1/3 backdrop-blur-md bg-white/30 dark:bg-dark/30">
+        <ul class="flex flex-col gap-4 mt-12">
+          <li>
+            <a href="#">Accounts</a>
+          </li>
+          <li>
+            <a href="#">Categories</a>
+          </li>
+          <li>
+            <a href="#">Transactions</a>
+          </li>
+          <li>
+            <a href="#">Reports</a>
+          </li>
+        </ul>
+      </div>
+      {# desktop menu #}
+      <ul class="hidden md:flex justify-center items-center gap-4">
+        <li>
+          <a href="#">Accounts</a>
+        </li>
+        <li>
+          <a href="#">Categories</a>
+        </li>
+        <li>
+          <a href="#">Transactions</a>
+        </li>
+        <li>
+          <a href="#">Reports</a>
+        </li>
+      </ul>
+    </div>
+    <div class="flex gap-4 justify-center items-center">
+      <a href="{% url 'users:logout' %}">Logout</a>
+      {% include "_theme.html" %}
+    </div>
+
+  </div>
 {% endblock header %}
 
 <!-- The main content -->
 {% block content %}
   <!-- Messages -->
+
   {% if messages %}
     {% include "_messages.html" with messages=messages %}
   {% endif %}
+
 {% endblock content %}
 
 <!-- Page footer form base.html -->

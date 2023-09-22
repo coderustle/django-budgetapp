@@ -22,4 +22,7 @@
     relative
     border;
   }
+  .selected {
+    @apply border-b-2;
+  }
 }

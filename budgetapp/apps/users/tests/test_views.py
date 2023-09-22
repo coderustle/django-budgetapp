@@ -2,7 +2,7 @@
 test_views.py
 """
 
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from tests import fixtures
@@ -10,6 +10,7 @@ from tests import fixtures
 from ..models import User
 
 
+@override_settings(WHITENOISE_AUTOREFRESH=True)
 class TestBase(TestCase):
     """A test base class containing a url and user attribute"""
 

@@ -29,5 +29,4 @@ test:
 # Run integration tests
 #--------------------------------------------------------
 test-integration:
-	python manage.py test \
-	tests.integration -v 0 --failfast
+	python manage.py test tests.integration -v 0 --failfast

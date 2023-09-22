@@ -2,7 +2,7 @@
 test_login.py
 """
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from django.test import tag
+from django.test import override_settings, tag
 from selenium.webdriver import Firefox
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
@@ -20,7 +20,7 @@ class TestLiveServerBase(StaticLiveServerTestCase):
     page: pom.BasePage
 
 
-@tag("integration")
+@override_settings(WHITENOISE_AUTOREFRESH=True)
 class TestLoginPage(TestLiveServerBase):
     """Test login functionallity"""
 
@@ -55,12 +55,15 @@ class TestLoginPage(TestLiveServerBase):
         """Test login user form"""
 
         username_field = pom.BaseElement(self.browser, "id_username", By.ID)
-        username_field.input(self.user.username)
+        username_field.click()
+        username_field.input("demo")
 
         password_field = pom.BaseElement(self.browser, "id_password", By.ID)
+        username_field.click()
         password_field.input("test1234")
 
         selector = "/html/body/main/div[2]/div/div/form/input[3]"
         submit_btn = pom.BaseElement(self.browser, selector, By.XPATH)
 
         submit_btn.click()
+        print(self.user.username)

@@ -36,9 +36,10 @@ def register_request(request: HttpRequest) -> HttpResponse:
             login(request, user, backend=backend)
             messages.success(request, "Registration successful.")
             return redirect("budget:home")
-        messages.error(
-            request, "Unsuccessful registration. Invalid information."
-        )
+        if form.errors:
+            messages.error(request,str(form.errors))
+        else:
+            messages.error(request, "Unsuccessful registration. Invalid information.")
         context = {"form": form}
         return TemplateResponse(request, template=template, context=context)
     return HttpResponse(status_code=400)

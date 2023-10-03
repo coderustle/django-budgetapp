@@ -50,6 +50,13 @@ def install_pre_commit():
     subprocess.run(["pre-commit", "install"], shell=True)
 
 
+def run_db_migrations():
+    """
+    Run `python manage.py migrate`
+    """
+    subprocess.run(["python", "manage.py", "migrate"])
+
+
 def main():
     logger.info("Create .env file")
     create_environment_variables()
@@ -57,6 +64,8 @@ def main():
     init_node_environment()
     logger.info("Install pre-commit")
     install_pre_commit()
+    logger.info("Run db migrations")
+    run_db_migrations()
 
 
 if __name__ == "__main__":

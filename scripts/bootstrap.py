@@ -43,6 +43,13 @@ def init_node_environment():
     subprocess.run(["yarn", "install"], shell=True)
 
 
+def generate_staticfiles():
+    """
+    Run yarn build:prod
+    """
+    subprocess.run(["yarn", "build:prod"])
+
+
 def install_pre_commit():
     """
     Run pre-commit install
@@ -50,11 +57,22 @@ def install_pre_commit():
     subprocess.run(["pre-commit", "install"], shell=True)
 
 
+def run_db_migrations():
+    """
+    Run `python manage.py migrate`
+    """
+    subprocess.run(["python", "manage.py", "migrate"])
+
+
 def main():
     logger.info("Create .env file")
     create_environment_variables()
     logger.info("Install node packages")
     init_node_environment()
+    logger.info("Generate static files")
+    generate_staticfiles()
+    logger.info("Run db migrations")
+    run_db_migrations()
     logger.info("Install pre-commit")
     install_pre_commit()
 

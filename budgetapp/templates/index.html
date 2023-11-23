@@ -1,0 +1,44 @@
+{% extends "base_public.html" %}
+
+{% block title %}
+  Budget Breeze
+{% endblock title %}
+
+{% block content %}
+
+  {{ block.super }}
+
+  <div id="index-content" class="container p-4 h-full">
+
+    <div class="text-center flex flex-col gap-8 my-10">
+
+      <div class="flex flex-col gap-4 md:gap-8">
+        <h1 class="uppercase text-4xl md:text-6xl font-bold">
+          <span class="text-primary">Budget</span>
+          <span class="text-secondary">Breeze</span>
+        </h1>
+        <h2 class="text-2xl md:text-3xl font-medium">Your budget, your breeze.</h2>
+
+        <p class="text-lg max-w-xl self-center">
+          Take control of your finances with Budget Breeze, an intuitive and comprehensive budgeting tool
+          designed to simplify your financial life.
+        </p>
+      </div>
+
+      <div class="text-lg flex gap-8 justify-center">
+        <button hx-get="{% url 'users:login' %}"
+                hx-swap="innerHTML"
+                hx-target="#index-content"
+                hx-push-url="true"
+                class="border border-secondary rounded-lg px-4 py-2 cursor-pointer">Login</button>
+        <button hx-get="{% url 'users:register' %}"
+                hx-swap="innerHTML"
+                hx-target="#index-content"
+                hx-push-url="true"
+                class="border border-primary rounded-lg px-4 py-2 cursor-pointer">Register</button>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock content %}

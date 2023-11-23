@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+<!-- Load stylesheet from base.html -->
+{% block stylesheet %}
+  {{ block.super }}
+{% endblock stylesheet %}
+
+<!-- Load the scripts in header from base.html -->
+{% block header_script %}
+  {{ block.super }}
+{% endblock header_script %}
+
+<!-- Page title -->
+{% block title %}Budget App{% endblock title %}
+
+<!-- Page header from base.html -->
+{% block header %}
+  {{ block.super }}
+  <div class="container p-4 flex justify-between items-center">
+    <p class="font-semibold text-primary">
+      <button class="uppercase"
+              hx-get="{% url 'budget:index' %}"
+              hx-push-url="true"
+              hx-swap="innerHTML"
+              hx-target="#index-content">
+        Budget <span class="text-secondary">Breeze</span>
+      </button>
+    </p>
+    {% include "_theme.html" %}
+  </div>
+{% endblock header %}
+
+<!-- The main content -->
+{% block content %}
+  <!-- Messages -->
+  {% if messages %}
+    {% include "_messages.html" with messages=messages %}
+  {% endif %}
+{% endblock content %}
+
+<!-- Page footer form base.html -->
+{% block footer %}
+  {{ block.super }}
+{% endblock footer %}
+
+<!-- Footer scripts -->
+{% block footer_script %}
+  {{ block.super }}
+{% endblock footer_script %}

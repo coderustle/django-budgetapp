@@ -1,69 +1,25 @@
 services:
-  db-budgetapp:
-    image: postgres:14
-    container_name: postgresdb-budgetapp
-    hostname: postgresdb-budgetapp
-    restart: always
-    env_file:
-      - ./.env
-    environment:
-      - POSTGRES_USER=${DEV_DB_USER}
-      - POSTGRES_PASSWORD=${DEV_DB_PASS}
-      - POSTGRES_DB=${DEV_DB_NAME}
-    ports:
-      - '5432:5432'
-    volumes:
-      - /var/lib/postgresql/budgetapp:/var/lib/postgresql/data
-
-  node-budgetapp:
-    image: node:16-alpine
-    container_name: node-budgetapp
-    hostname: node
-    restart: always
+  node:
+    image: node:18-alpine
+    container_name: node
     environment:
       - NODE_ENV=development
     working_dir: /app
-    command: npm run build:dev
+    command: yarn run build:dev
     volumes:
       - ./:/app
-    profiles: ["dev"]
 
-  webapp-dev:
-    container_name: budgetapp-dev
-    image: budgetapp-dev
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - ENVIRONMENT=local
-    depends_on:
-      - db-budgetapp
-      - node-budgetapp
-    entrypoint:
-      - python
-      - manage.py
-      - runserver
-      - 0.0.0.0:8000
-    ports:
-      - '8000:8000'
-    volumes:
-      - .:/opt/budgetapp
-    profiles: ["dev"]
-
-  webapp-prod:
-    container_name: budgetapp-prod
-    image: budgetapp-prod
+  litestream:
+    container_name: litestream
+    image: litestream/litestream
     env_file:
-      - ./.env
+      - .env
     environment:
-      - DJANGO_SETTINGS_MODULE=budgetapp.settings.prod
-    build:
-      context: .
-      dockerfile: Dockerfile
-      args:
-        - ENVIRONMENT=prod
-    depends_on:
-      - db-budgetapp
-    ports:
-      - '8000:8000'
-    profiles: ["prod"]
+      - REPLICA_URL=${REPLICA_URL}
+      - LITESTREAM_AZURE_ACCOUNT_KEY=${LITESTREAM_AZURE_ACCOUNT_KEY}
+    working_dir: /app
+    command: replicate ./data/development.db ${REPLICA_URL}
+    volumes:
+      - ./:/app
+    profiles:
+      - litestream

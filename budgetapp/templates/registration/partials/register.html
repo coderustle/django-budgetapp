@@ -1,0 +1,38 @@
+{% load widget_tweaks %}
+
+<div id="index-content" class="container p-4 h-full">
+
+    <div class="my-10 mx-auto md:max-w-sm">
+
+        <div class="space-y-6 rounded-md border border-primary p-6">
+
+            <div>
+                <h1 class="text-2xl font-bold">Register</h1>
+            </div>
+
+            <form method="post" action="{% url 'users:register' %}">
+
+                {% csrf_token %}
+
+                <div class="w-full space-y-2">
+                    {% render_field form.username placeholder=form.username.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary w-full" %}
+
+                    {% render_field form.email placeholder=form.email.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary w-full" %}
+
+                    {% render_field form.password1 placeholder=form.password1.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary w-full" %}
+
+                    {% render_field form.password2 placeholder=form.password2.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary w-full" %}
+                </div>
+
+                <div class="my-10">
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <input type="submit"
+                           value="Register"
+                           class="block w-full rounded-md border border-primary py-2 text-lg hover:cursor-pointer hover:shadow-lg focus:border-secondary focus:outline-none dark:bg-dark" />
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</div>

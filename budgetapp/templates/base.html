@@ -1,55 +1,88 @@
 {% load static %}
-<!DOCTYPE html>
+{% load render_bundle from webpack_loader %}
+{% load webpack_static from webpack_loader %}
 
-<html lang="en">
+<!DOCTYPE html>
+<html style="height: 100%"
+      lang="en"
+      x-data="{darkMode: $persist(false)}"
+      :class="{'dark': darkMode}">
+
   <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8"/>
-    <meta lang="en" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name=”robots” content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="description" content="Personal Budget Application"/>
-    <meta name="author" content="Madalin Popa" />
-    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
-    <link rel="canonical" href="https://budgetapp.madalintech.com/"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name
+          robots
+          content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="description" content="Personal Budget Application" />
+
+    {% block meta_social %}
+      <meta property="og:locale" content="en_EN" />
+      <meta property="og:type" content="Personal Budget Application" />
+      <meta property="og:title" content="Personal Budget Application" />
+      <meta property="og:description" content="Personal Budget Application" />
+      <meta property="og:url" content="https://budgetapp.madalintech.com/" />
+      <meta property="og:site_name" content="Personal Budget Application" />
+      <meta property="article:publisher" content="https://www.facebook.com/" />
+    {% endblock meta_social %}
+
+    <link rel="canonical" href="https://budgetbreeze.com/" />
+    <link rel="shortcut icon"
+          type="image/png"
+          href="{% webpack_static 'images/favicon.ico' %}" />
+    <link rel="apple-touch-icon"
+          type="image/png"
+          href="{% webpack_static 'images/apple-touch-icon.png' %}">
 
     <!-- Load CSS -->
     {% block stylesheet %}
-      <link type="text/css" href="{% static '/css/main.css' %}" rel="stylesheet" />
+      {% render_bundle 'index' 'css' %}
     {% endblock stylesheet %}
 
-    <title>{% block title %}Budget Application{% endblock title %}</title>
+    <title>
 
-    {% block header_script %}{% endblock header_script %}
+      {% block title %}
+        Personal Budget Application
+      {% endblock title %}
+
+    </title>
+
+    {% block header_script %}
+      <!-- Load JS -->
+    {% endblock header_script %}
+
   </head>
 
-  <body class="bg-light-color">
+  <body class="dark:bg-dark dark:text-white h-full">
 
-    <main id="main">
+    <main id="main" class="h-full">
       <!-- Header -->
-      {% block header %}{% endblock header %}
+      {% block header %}
+      {% endblock header %}
 
       <!-- Main content-->
-      {% block content %}{% endblock content %}
+      {% block content %}
+      {% endblock content %}
 
       <!-- Footer -->
-      {% block footer %}{% endblock footer %}
+      {% block footer %}
+      {% endblock footer %}
+
     </main>
 
-  <!-- Javascript-->
-  {% block footer_script %}
+    <!-- Javascript-->
+    {% block footer_script %}
+      {% render_bundle 'alpine' 'js' %}
+      {% render_bundle 'htmx' 'js' %}
+      {% render_bundle 'index' 'js' %}
+      <script>
+    document.body.addEventListener('htmx:configRequest', (event) => {
+      event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+    });
+      </script>
 
-    <script defer src="{% static '/js/alpine.bundle.js' %}"></script>
-    <script defer src="{% static '/js/htmx.bundle.js' %}"></script>
-    <script defer src="{% static '/js/runtime.bundle.js' %}"></script>
-    <script defer src="{% static '/js/index.bundle.js' %}"></script>
-    <script>
-        document.body.addEventListener('htmx:configRequest', (event) => {
-            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-        });
-    </script>
-
-  {% endblock footer_script %}
+    {% endblock footer_script %}
 
   </body>
 

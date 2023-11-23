@@ -62,16 +62,6 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
 # PyBuilder
 target/
 
@@ -85,22 +75,8 @@ ipython_config.py
 # pyenv
 .python-version
 
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
 # PEP 582; used by e.g. github.com/David-OConnor/pyflow
 __pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
 
 # Environments
 .env
@@ -113,16 +89,6 @@ venv.bak/
 .idea
 node_modules
 
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
 # mypy
 .mypy_cache/
 .dmypy.json
@@ -131,26 +97,22 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Ignore build files
-budgetapp/static/css/**
-budgetapp/static/js/**
-
-# Project files that I don't want in the final build
-LICENSE
-README.md
-noxfile.py
-Dockerfile
-.gitignore
+# Project files that I don't want them in the final build
+*.md
+*.db
+*.yaml
+*.toml
 *.config.js
-package.json
-compose.yaml
-.dockerignore
-pyproject.toml
-yarm.lock
-.pre-commit-config.yaml
+*ignore
+Dockerfile
 
-# Project directories that I don't want in the final build
+# Project directories that I don't want them in the final build
 .git
 .github
 .devcontainer
-webpack
+budgetapp/static/**
+
+# Ignore litestream files
+*.db-shm
+*.db-wal
+*.db-litestream

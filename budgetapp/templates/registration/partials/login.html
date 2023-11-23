@@ -1,0 +1,29 @@
+{% load widget_tweaks %}
+
+<div id="index-content" class="container p-4 h-full">
+  <div class="my-10 mx-auto md:max-w-sm">
+    <div class="space-y-6 rounded-md border border-primary p-6">
+
+      <div>
+        <h1 class="text-2xl font-bold">Login</h1>
+      </div>
+
+      <form method="post" action="{% url 'users:login' %}" class="flex w-full flex-col gap-6">
+
+        {% csrf_token %}
+
+        <div class="space-y-4">
+          <div class="flex flex-col">
+            {% render_field form.username placeholder=form.username.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary" %}
+          </div>
+          <div class="flex flex-col">
+            {% render_field form.password placeholder=form.password.label class="border-b border-primary py-4 dark:text-white dark:bg-dark rounded-sm focus:outline-none focus:border-secondary" %}
+          </div>
+        </div>
+
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="submit" value="Login" class="my-10 block w-full rounded-md border border-primary py-2 text-lg hover:cursor-pointer hover:shadow-lg focus:border-secondary focus:outline-none dark:bg-dark"/>
+      </form>
+    </div>
+  </div>
+</div>

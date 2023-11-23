@@ -1,21 +1,29 @@
 /**
- * Libraries.js
+ * Images
  */
-import Alpine from 'alpinejs';
+import "./images/favicon.ico";
+import "./images/apple-touch-icon.png";
+import "./images/android-chrome-192x192.png";
 
 /**
  * Style
  */
-import './css/main.css';
+import "./css/main.css";
 
 /**
- * Global objects
+ * Third party libraries
  */
-window.Alpine = Alpine;
-window.htmx = require('htmx.org');
+
+import Alpine from "alpinejs";
+import persist from "@alpinejs/persist";
+
+/**
+ * Htmx setup
+ */
+window.htmx = require("htmx.org");
 
 /**
  * Alpine setup
  */
-// Alpine.data('StoreCheckout', StoreCheckout);
+Alpine.plugin(persist);
 Alpine.start();

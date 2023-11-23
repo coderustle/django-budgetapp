@@ -1,40 +1,32 @@
 -r base.txt
+-r test.txt
+-r prod.txt
 
-# Testing
+# Test coverage
 # -----------------------------------------------------------------------
-coverage[toml]==6.4.4             # https://pypi.org/project/coverage/
-django-coverage-plugin==2.0.3   # https://pypi.org/project/django-coverage-plugin/
-Faker==15.0.0                 # https://pypi.org/project/Faker/
-selenium==4.4.3                 # https://pypi.org/project/selenium/
-webdriver-manager==3.8.3        # https://pypi.org/project/webdriver-manager/
-tblib==1.7.0                    # https://pypi.org/project/tblib/
-nox==2022.8.7                   # https://pypi.org/project/nox/
+coverage==7.3.0                    # https://pypi.org/project/coverage/
+django-coverage-plugin==3.1.0      # https://pypi.org/project/django-coverage-plugin/
 
 # Formatting
 # -----------------------------------------------------------------------
-isort==5.10.1                   # https://pypi.org/project/isort/
-black==22.8.0                   # https://pypi.org/project/black/
+black==23.7.0                           # https://pypi.org/project/black/
 
 # Code quality
 # -----------------------------------------------------------------------
-pylint==2.15.3                # https://pypi.org/project/pylint/
-pylint-django==2.5.3            # https://pypi.org/project/pylint-django/
-mypy==0.971                     # https://pypi.org/project/mypy/
+# pylint==2.16.2                          # https://pypi.org/project/pylint/
+# pylint-django==2.5.3                    # https://pypi.org/project/pylint-django/
+# mypy==1.0.0                             # https://pypi.org/project/mypy/
+ruff==0.0.286							  # https://pypi.org/project/ruff/
 
 # Stubs
 # -----------------------------------------------------------------------
-django-stubs==1.12.0            # https://pypi.org/project/django-stubs/
-types-selenium==3.141.9         # https://pypi.org/project/types-selenium/
+django-stubs==4.2.3                # https://pypi.org/project/django-stubs/
+types-selenium==3.141.9            # https://pypi.org/project/types-selenium/
 
 # Utils
 # -----------------------------------------------------------------------
-ipython==8.5.0                  # https://pypi.org/project/ipython/
-# django-debug-toolbar==3.7.0     # https://pypi.org/project/django-debug-toolbar/
-pre-commit==2.20.0              # https://pypi.org/project/pre-commit/
+ipython==8.14.0                    # https://pypi.org/project/ipython/
+# django-debug-toolbar==4.1.0      # https://pypi.org/project/django-debug-toolbar/
+pre-commit==3.4.0                  # https://pypi.org/project/pre-commit/
+djlint
 
-# Database
-# -----------------------------------------------------------------------
-psycopg2-binary==2.9.3   # https://pypi.org/project/psycopg2-binary/
-# Server
-# -----------------------------------------------------------------------
-gunicorn==20.1.0         # https://pypi.org/project/gunicorn/

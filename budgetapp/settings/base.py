@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 # pylint: disable=wildcard-import unused-wildcard-import
 
-import os
 import mimetypes
+import os
 from pathlib import Path
 
 mimetypes.add_type("text/javascript", ".gz", True)
@@ -47,11 +47,17 @@ DJANGO_APPS = [
 ]
 
 THIRD_PARTY_APPS = [
-    # "whitenoise.runserver_nostatic",
+    "webpack_loader",
+    "widget_tweaks",
+    "djmoney",
+    "guardian",
+    "django_htmx",
 ]
 
 LOCAL_APPS = [
-    "budgetapp.applications.users.apps.UsersConfig",
+    "budgetapp.apps.users.apps.UsersConfig",
+    "budgetapp.apps.budgets.apps.BudgetsConfig",
+    "budgetapp.apps.transactions.apps.TransactionsConfig",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -65,6 +71,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 # URLS CONFIG
@@ -91,17 +98,14 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#wsgi-application
 WSGI_APPLICATION = "budgetapp.wsgi.application"
 
-# MIGRATIONS
-# -----------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/4.0/ref/settings/#migration-modules
-MIGRATION_MODULES = {
-    "users": "budgetapp.contrib.users.migrations",
-}
-
 # SET CUSTOM USER MODEL
 # -----------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-AUTH_USER_MODEL
+# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting
+# -AUTH_USER_MODEL
 AUTH_USER_MODEL = "users.User"
+
+# https://docs.djangoproject.com/en/4.1/ref/settings/#std-setting-LOGIN_URL
+LOGIN_URL = "/users/login/"
 
 # https://docs.djangoproject.com/en/4.0/ref/settings/#login-redirect-url
 LOGIN_REDIRECT_URL = "/users/"
@@ -114,18 +118,29 @@ LOGOUT_REDIRECT_URL = "/users/login/"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".MinimumLengthValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME": "django.contrib.auth.password_validation"
+        ".NumericPasswordValidator",
     },
 ]
+
+# Add custom authentication backend
+# https://docs.djangoproject.com/en/4.1/topics/auth/customizing/
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",  # default
+    "guardian.backends.ObjectPermissionBackend",
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -149,7 +164,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_DIRS = [BASE_DIR / "budgetapp/static"]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "budgetapp/static")]
 
 # MEDIA
 # -----------------------------------------------------------------------------
@@ -166,3 +181,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # http://whitenoise.evans.io/en/stable/django.html
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
+# WEBPACK
+# -----------------------------------------------------------------------------
+# https://github.com/django-webpack/django-webpack-loader
+WEBPACK_LOADER = {
+    "DEFAULT": {
+        "CACHE": not DEBUG,
+        "STATS_FILE": os.path.join(BASE_DIR, "webpack/webpack-stats.json"),
+        "POLL_INTERVAL": 0.1,
+        "IGNORE": [r".+\.hot-update.js", r".+\.map"],
+    }
+}

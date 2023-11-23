@@ -2,7 +2,7 @@
 
 # Database
 # -----------------------------------------------------------------------
-psycopg2-binary==2.9.7   # https://pypi.org/project/psycopg2-binary/
+psycopg2-binary==2.9.9   # https://pypi.org/project/psycopg2-binary/
 
 # Server
 # -----------------------------------------------------------------------

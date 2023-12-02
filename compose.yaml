@@ -1,3 +1,4 @@
+version: "3.8"
 services:
   db:
     image: postgres:latest
@@ -5,11 +6,19 @@ services:
     restart: unless-stopped
     env_file:
       - .env
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_PASSWORD: "${DB_PASS}"
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready" ]
       interval: 10s
       timeout: 5s
       retries: 5
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
 
   node:
     image: node:18-alpine
@@ -22,4 +31,4 @@ services:
       - ./:/app
 
 volumes:
-  pgdata:
+  postgres_data:

@@ -16,17 +16,5 @@ services:
     volumes:
       - ./:/app
 
-  litestream:
-    container_name: litestream
-    image: litestream/litestream
-    env_file:
-      - .env
-    environment:
-      - REPLICA_URL=${REPLICA_URL}
-      - LITESTREAM_AZURE_ACCOUNT_KEY=${LITESTREAM_AZURE_ACCOUNT_KEY}
-    working_dir: /app
-    command: replicate ./data/development.db ${REPLICA_URL}
-    volumes:
-      - ./:/app
-    profiles:
-      - litestream
+volumes:
+  pgdata:

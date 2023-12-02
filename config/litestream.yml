@@ -1,9 +1,0 @@
-dbs:
-  # Replicate production database in Azure Storage Account
-  - path: /opt/budgetapp/data/prod.db
-    replicas:
-      - url: abs://budgetapp@databases/prod/prod.db
-  # Replicate development database locally
-  - path: ./data/dev.db
-    replicas:
-      - path: ./data/replica/dev.db

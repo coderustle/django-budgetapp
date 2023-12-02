@@ -6,7 +6,7 @@ from typing import Optional
 from django.contrib.auth import get_user_model
 from faker import Faker
 
-from budgetapp.apps.users.models import User
+from users import User
 
 
 def create_user(

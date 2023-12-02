@@ -5,7 +5,7 @@ import unittest
 from django.test import TestCase
 from guardian.shortcuts import assign_perm, get_objects_for_user
 
-from budgetapp.apps.budgets.models import Budget
+from budgets.models import Budget
 from tests import fixtures
 
 

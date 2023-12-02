@@ -3,7 +3,7 @@ forms.py
 """
 from django import forms
 
-from budgetapp.apps.budgets.models import Budget
+from budgets.models import Budget
 
 
 class BudgetForm(forms.ModelForm):

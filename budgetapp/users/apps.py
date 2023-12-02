@@ -8,4 +8,4 @@ class UsersConfig(AppConfig):
     """Config for users app"""
 
     default_auto_field = "django.db.models.BigAutoField"
-    name = "budgetapp.apps.users"
+    name = "budgetapp.users"

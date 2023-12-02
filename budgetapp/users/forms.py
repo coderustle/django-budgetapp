@@ -7,7 +7,7 @@ from .models import User
 class NewUserForm(UserCreationForm):
     """Form to register a new user"""
 
-    email = forms.EmailField(required=True)
+    email = forms.EmailFstield(required=True)
 
     class Meta(UserCreationForm.Meta):
         model = User

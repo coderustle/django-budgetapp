@@ -1,4 +1,27 @@
+version: "3.8"
 services:
+  db:
+    image: postgres:latest
+    container_name: postgres
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: "${DB_USER}"
+      POSTGRES_DB: "${DB_NAME}"
+      POSTGRES_PASSWORD: "${DB_PASS}"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$DB_USER" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
   node:
     image: node:18-alpine
     container_name: node
@@ -9,17 +32,5 @@ services:
     volumes:
       - ./:/app
 
-  litestream:
-    container_name: litestream
-    image: litestream/litestream
-    env_file:
-      - .env
-    environment:
-      - REPLICA_URL=${REPLICA_URL}
-      - LITESTREAM_AZURE_ACCOUNT_KEY=${LITESTREAM_AZURE_ACCOUNT_KEY}
-    working_dir: /app
-    command: replicate ./data/development.db ${REPLICA_URL}
-    volumes:
-      - ./:/app
-    profiles:
-      - litestream
+volumes:
+  postgres_data:

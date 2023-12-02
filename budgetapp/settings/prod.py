@@ -3,7 +3,7 @@ Django settings for budgetapp project.
 """
 
 # pylint: disable=wildcard-import unused-wildcard-import
-
+import os
 from .base import *
 
 # GENERAL
@@ -26,9 +26,14 @@ CSRF_TRUSTED_ORIGINS = ["https://personalbudget.azurewebsites.net"]
 
 # DATABASES
 # -----------------------------------------------------------------------------
+# Database settings
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "data/production.db",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_USER"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": "5432",
     }
 }
